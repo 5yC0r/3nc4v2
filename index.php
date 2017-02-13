@@ -18,9 +18,10 @@
 		<?php
 			include ('vista/preguntas.php'); 
 		?>
-		<button type="button" class="btn btn-primary btn-lg" id="boton-guardar-respuestas">
+
+		<!--<button type="button" class="btn btn-primary btn-lg" id="boton-guardar-respuestas">
 			Guardar Respuestas
-		</button>
+		</button>-->
 
 		<div id="resultado">
 		</div>
