@@ -449,16 +449,4 @@ $(document).ready(function () {
 			console.log("Faltan preguntas por responder");
 		}
 	});
-
-	$('#btn-guardar').click(function(){
-		alert("hola");
-		
-		$('li[seleccionado=verdadero]').each(function(){
-			var numeroPregunta = $(this).data("pregunta");
-			var respuesta = $(this).data("indice");
-
-			console.log(numeroPregunta + " > " + respuesta);
-		})
-
-	});
 });
