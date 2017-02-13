@@ -330,7 +330,7 @@ $(document).ready(function () {
 	});
 
 	$('#boton').click(function(){
-		$('li[seleccionado=verdadero]').each(function(){
+		/*$('li[seleccionado=verdadero]').each(function(){
 			var pregunta = $(this).data("pregunta");
 			var respuesta = $(this).data("indice");
 			console.log(pregunta + "-" + respuesta);
@@ -341,7 +341,18 @@ $(document).ready(function () {
 				var valor = $(this).val();
 				console.log(pregunta + "-" + valor);
 			}
-		});
+		});*/
+		var parametros = {
+		"indice" : 6
+		};
+		$.ajax({
+                data:  parametros,
+                url:   'controlador/Controlador.php',
+                type:  'post',
+                success:  function (response) {
+    				
+                }
+        });
 	});
 
 	$('#btn-verificar').click(function(){
@@ -452,21 +463,186 @@ $(document).ready(function () {
 
 	$('#btn-guardar').click(function(){
 		//para guardar preguntas de alternativa simple
-		/*$('li[seleccionado=verdadero]').each(function(){
-			var numeroPregunta = $(this).data("pregunta");
-			var respuesta = $(this).data("indice");
-
-			console.log(numeroPregunta + " > " + respuesta);
-		})
-		//para guardar preguntas de tipo select
-		$('#select-departamentos').val();	//con esto se obtiene el value = 0 | 1 | 2 ...
-		*/
-		$('input ,select').each(function(){
-			var numeroPregunta = $(this).data("pregunta");
-			var respuesta = $(this).val();
-
-			console.log(numeroPregunta + " > " + respuesta);
-		});
+		var bandera = verificarPreguntasRespondidas();
+		if(bandera == "falso"){
+			alert("Aun hay preguntas sin responder");
+		}else{
+			$('li[seleccionado=verdadero]').each(function(){
+				var numeroPregunta = $(this).data("pregunta");
+				var respuesta = $(this).data("indice");
+				//console.log(numeroPregunta + " > " + respuesta);
+				var parametros ={
+					"indice": 0,
+					"pregunta" : numeroPregunta,
+					"respuesta" : respuesta
+				}
+				$.ajax({
+		                data:  parametros,
+		                url:   'controlador/Controlador.php',
+		                type:  'post',
+		                beforeSend: function () {
+		                        $("#resultado").html("Procesando, espere por favor...");
+		                },
+		                success:  function () {
+		                        $("#resultado").html("Sus respuestas han sido ingresadas y registradas, gracias por participar de nuestra encuesta.");
+		                }
+		        });
+			});
+			//para guardar preguntas tipo select
+			$('select').each(function(){
+				var numeroPregunta = $(this).data("pregunta");
+				var respuesta = $(this).val();
+				if(respuesta != 0){
+					//console.log(numeroPregunta + " > " + respuesta);
+					var parametros ={
+						"indice": 0,
+						"pregunta" : numeroPregunta,
+						"respuesta" : respuesta
+					}
+					$.ajax({
+			                data:  parametros,
+			                url:   'controlador/Controlador.php',
+			                type:  'post',
+			                beforeSend: function () {
+			                        $("#resultado").html("Procesando, espere por favor...");
+			                },
+			                success:  function () {
+			                        $("#resultado").html("Sus respuestas han sido ingresadas y registradas, gracias por participar de nuestra encuesta.");
+			                }
+			        });
+				}
+			});
+			//para guardar preguntas tipo input
+			$('input').each(function(){
+				var numeroPregunta = $(this).data("pregunta");
+				var respuesta = $(this).val();
+				if(respuesta != ""){
+					//console.log(numeroPregunta + " -> " + respuesta);
+					var parametros ={
+						"indice": 1,
+						"pregunta" : numeroPregunta,
+						"respuesta" : respuesta
+					}
+					$.ajax({
+			                data:  parametros,
+			                url:   'controlador/Controlador.php',
+			                type:  'post',
+			                beforeSend: function () {
+			                        $("#resultado").html("Procesando, espere por favor...");
+			                },
+			                success:  function () {
+			                        $("#resultado").html("Sus respuestas han sido ingresadas y registradas, gracias por participar de nuestra encuesta.");
+			                }
+			        });
+				}
+			});
+		}
 	});
 });
-979375631
+
+function verificarPreguntasRespondidas(){
+	var j = 1;
+	var alternativa_a = $('#7 .alternativas-simple-compuesta li[data-indice=a]').data("seleccionado");
+	var alternativa_b = $('#7 .alternativas-simple-compuesta li[data-indice=b]').data("seleccionado");
+	var bandera = "verdadero";
+	if(alternativa_a == "verdadero"){i=22}else{i=7};
+
+	while(j<=i){
+		if($("#"+j+"").data("marcado")==null){	
+			$("#"+j+" > .enunciado").css("color","red");
+			bandera = "falso";
+		}else{
+			$("#"+j+" > .enunciado").css("color","black");
+		}
+		
+		if(j==7){
+			if(alternativa_a == "verdadero"){
+				if($("#7-1").data("marcado")==null ){
+					$("#7-1 .enunciado").css("color","red");
+					bandera = "falso";
+				}else{
+					$("#7-1 .enunciado").css("color","black");
+				}
+			}
+
+			if(alternativa_b == "verdadero"){
+				if($("#7-2").data("marcado")==null ){
+					$("#7-2 .enunciado").css("color","red");
+					bandera = "falso";
+				}else{
+					$("#7-2 .enunciado").css("color","black");
+				}
+			}
+			
+			if($('#7-1 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero"){
+				if($("#7-1-1").data("marcado")==null ){
+					$("#7-1-1 .enunciado").css("color","red");
+					bandera = "falso";
+				}else{
+					$("#7-1-1 .enunciado").css("color","black");
+				}
+			}
+		}
+
+		if(j==8 && $('#8 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero"){
+			if($("#8-1").data("marcado")==null ){
+				$("#8-1 .enunciado").css("color","red");
+				bandera = "falso";
+			}else{
+				$("#8-1 .enunciado").css("color","black");
+			}
+		}
+
+		if(j==9 && $('#9 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero"){
+			if($("#9-1").data("marcado")==null ){
+				$("#9-1 .enunciado").css("color","red");
+				bandera = "falso";
+			}else{
+				$("#9-1 .enunciado").css("color","black");
+			}
+		}
+
+		if(j==10){
+			if($('#10 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero"){
+				if($("#10-1").data("marcado")==null ){
+					$("#10-1 .enunciado").css("color","red");
+					bandera = "falso";
+				}else{
+					$("#10-1 .enunciado").css("color","black");
+				}
+			}
+			if($('#10 .alternativas li[data-indice=b]').data("seleccionado") == "verdadero"){
+				if($("#10-2").data("marcado")==null ){
+					$("#10-2 .enunciado").css("color","red");
+					bandera = "falso";
+				}else{
+					$("#10-2 .enunciado").css("color","black");
+				}
+			}
+			if($('#10-1 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero" || $('#10-1 .alternativas li[data-indice=b]').data("seleccionado") == "verdadero"){
+				if($("#10-1-1").data("marcado")==null ){
+					$("#10-1-1 .enunciado").css("color","red");
+					bandera = "falso";
+				}else{
+					$("#10-1-1 .enunciado").css("color","black");
+				}
+			}
+			if($('#10-1 .alternativas li[data-indice=c]').data("seleccionado") == "verdadero"){
+				if($("#10-1-2").data("marcado")==null ){
+					$("#10-1-2 .enunciado").css("color","red");
+					bandera = "falso";
+				}else{
+					$("#10-1-2 .enunciado").css("color","black");
+				}
+			}
+		}
+		j++;
+	}
+	
+	if(bandera == "verdadero"){
+		console.log("todo");
+	}else{
+		console.log("Faltan preguntas por responder");
+	}
+	return bandera;
+}

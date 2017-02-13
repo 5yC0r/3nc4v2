@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	$_SESSION['dniAlumno']=12345678;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -81,12 +81,15 @@
 								$i++;
 							}*/
 							echo json_encode($resultado);
-						}/*else{
+						}else{
 							if($indice == 6){
 								session_start();
-								session_destroy();//Destruimos la sesion
+								include 'ControladorCuenta.php';
+								$controladorCuenta = new ControladorCuenta();
+								$dniAlumno = $_SESSION['dniAlumno'];
+								$resultado = $controladorCuenta->updateAttrEncuestaRespondida($dniAlumno);
 							}
-						}*/
+						}
 					}
 				}
 			}
