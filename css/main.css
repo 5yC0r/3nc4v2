@@ -1,0 +1,33 @@
+#contenedor-global{
+	width: 998px;
+	margin: 0 auto;
+}
+li{
+	list-style: none;
+	cursor: pointer;
+}
+#preguntas-titulado{
+	display: none;
+}
+#contenedor-global .pregunta-alternativa-multiple .pregunta-alternativa-multiple {
+	display: none;
+}
+#contenedor-global .pregunta-alternativa-multiple .pregunta-alternativa-multiple .pregunta-alternativa-simple {
+	display: none;
+}
+#contenedor-global .pregunta-alternativa-simple-compuesta .pregunta-alternativa-simple-1{
+	display: none;
+}
+#contenedor-global .pregunta-alternativa-simple-compuesta .pregunta-respuesta-tipeada-1{
+	display: none;
+}
+#contenedor-global .pregunta-alternativa-select-2{
+	display: none;
+}
+#contenedor-global .pregunta-adicional-alternativa-multiple, #contenedor-global .pregunta-adicional-tipeada{
+	display: none;
+}
+#contenedor-global .pregunta-compuesta .pregunta-adicional-alternativa-simple{
+	display: none;
+	color: red;
+}

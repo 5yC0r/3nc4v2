@@ -1,0 +1,116 @@
+<div class="pregunta-alternativa-multiple" id="10">
+			<div class="enunciado">
+				<label for="">1) aqui va el enunciado de la pregunta</label>
+			</div>
+			<div class="alternativas">
+				<ul>
+					<li data-pregunta="10" data-subpregunta="10-1">a) alternativa a</li>
+					<li data-pregunta="10" data-subpregunta="10-2">b) alternativa b</li>
+					<li data-pregunta="10" >c) alternativa c</li>
+					<li data-pregunta="10" >d) alternativa d</li>
+					<li data-pregunta="10" >e) alternativa e</li>
+					<li data-pregunta="10" >f) alternativa f</li>
+				</ul>
+			</div>
+				<div class="pregunta-alternativa-multiple" id="10-1">
+					<div class="enunciado"><label for="">enunciado de pregunta 10-1</label></div>
+					<div class="alternativas">
+						<ul>
+							<li data-pregunta="10-1" data-subpregunta="10-1-1">a) alternativa 10-1</li>
+							<li data-pregunta="10-1" data-subpregunta="10-1-1">b) alternativa 10-1</li>
+							<li data-pregunta="10-1" data-subpregunta="10-1-2">c) alternativa 10-1</li>
+						</ul>
+					</div>
+						<div class="pregunta-alternativa-multiple" id="10-1-1">
+							<div class="enunciado"><label for="">enunciado de pregunta 10-1-1</label></div>
+							<div class="alternativas">
+								<ul>
+									<li data-pregunta="10-1-1">a) alternativa 10-1-1</li>
+									<li data-pregunta="10-1-1">b) alternativa 10-1-1</li>
+									<li data-pregunta="10-1-1">c) alternativa 10-1-1</li>
+								</ul>
+							</div>
+						</div>
+						<div class="pregunta-alternativa-multiple" id="10-1-2">
+							<div class="enunciado"><label for="">enunciado de pregunta 10-1-2</label></div>
+							<div class="alternativas">
+								<ul>
+									<li data-pregunta="10-1-2">a) alternativa 10-1-2</li>
+									<li data-pregunta="10-1-2">b) alternativa 10-1-2</li>
+									<li data-pregunta="10-1-2">c) alternativa 10-1-2</li>
+								</ul>
+							</div>
+						</div>
+				</div>
+				<div class="pregunta-alternativa-multiple" id="10-2">
+					<div class="enunciado"><label for="">enunciado de pregunta 10-2</label></div>
+					<div class="alternativas">
+						<ul>
+							<li data-pregunta="10-2">a) alternativa 10-2</li>
+							<li data-pregunta="10-2">b) alternativa 10-2</li>
+							<li data-pregunta="10-2">c) alternativa 10-2</li>
+						</ul>
+					</div>
+				</div>
+		</div>
+
+
+----------------------------------------------------------------------------------
+
+/*
+		var pc = ""; var sc = ""; var tc = ""; var cc = ""; var ps="";
+		//Primer caso: verificar que todas las preguntas de alternativa simple esten marcadas
+		$('.pregunta-alternativa-simple, .pregunta-alternativa-simple-1, .pregunta-adicional-alternativa-simple').each(function(){
+			var marcado = $(this).data("marcado");
+			if(marcado == null){
+				console.log($(this).attr("id"));
+				pc = pc + " - "+$(this).attr("id");
+			}
+		});
+		//Segundo caso: verificar que todas las preguntas de alternativa multiple esten marcadas
+		$('.pregunta-alternativa-multiple, .pregunta-adicional-alternativa-multiple').each(function(){
+			var marcado = $(this).data("marcado");
+			if(marcado == null){
+				console.log($(this).attr("id"));
+				sc = sc + " - "+$(this).attr("id");
+			}
+		});
+
+		//Tercer caso: verificar que todas las preguntas compuestas esten marcadas
+		$('.pregunta-compuesta, .pregunta-alternativa-simple-compuesta').each(function(){
+			var marcado = $(this).data("marcado");
+			if(marcado == null){
+				console.log($(this).attr("id"));
+				tc = tc + " - "+$(this).attr("id");
+			}
+		});
+
+		//Cuarto caso: verificar que las preguntas de respuesta tipeada esten respondidas
+		$('.pregunta-respuesta-tipeada, .pregunta-adicional-tipeada, .pregunta-respuesta-tipeada-1').each(function(){
+			var marcado = $(this).data("marcado");
+			if(marcado == null){
+				console.log($(this).attr("id"));
+				cc = cc + " - "+$(this).attr("id");
+			}
+		});
+
+		//Quinto caso: verificar que las preguntas select esten respondidas
+		$('.pregunta-alternativa-select-2').each(function(){
+			var marcado = $(this).data("marcado");
+			if(marcado == "nomarcado"){
+				console.log($(this).attr("id"));
+				ps = ps + " - "+$(this).attr("id");
+			}
+		});
+
+		if(pc !== "" || sc !== "" || tc !== "" || cc !== "" || ps !== ""){
+			//$('#modalPreguntasFaltantes').modal('show');
+			$('#lista-preguntas-sin-respuesta').append("<p>"+pc+"</p><br>");
+			$('#lista-preguntas-sin-respuesta').append("<p>"+sc+"</p><br>");
+			$('#lista-preguntas-sin-respuesta').append("<p>"+tc+"</p><br>");
+			$('#lista-preguntas-sin-respuesta').append("<p>"+cc+"</p><br>");
+			$('#lista-preguntas-sin-respuesta').append("<p>"+ps+"</p><br>");
+		}else{
+			console.log("Todas las preguntas estan respindaidas");
+		}*/
+	});
