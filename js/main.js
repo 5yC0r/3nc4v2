@@ -449,4 +449,24 @@ $(document).ready(function () {
 			console.log("Faltan preguntas por responder");
 		}
 	});
+
+	$('#btn-guardar').click(function(){
+		//para guardar preguntas de alternativa simple
+		/*$('li[seleccionado=verdadero]').each(function(){
+			var numeroPregunta = $(this).data("pregunta");
+			var respuesta = $(this).data("indice");
+
+			console.log(numeroPregunta + " > " + respuesta);
+		})
+		//para guardar preguntas de tipo select
+		$('#select-departamentos').val();	//con esto se obtiene el value = 0 | 1 | 2 ...
+		*/
+		$('input ,select').each(function(){
+			var numeroPregunta = $(this).data("pregunta");
+			var respuesta = $(this).val();
+
+			console.log(numeroPregunta + " > " + respuesta);
+		});
+	});
 });
+979375631

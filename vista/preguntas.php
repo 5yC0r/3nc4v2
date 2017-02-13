@@ -121,7 +121,7 @@
 					<label for="">Seleccione en que colegio profesional se encuentra habilitado.</label>
 				</div>
 				<div class="">
-					<select name="" id="select-departamentos">
+					<select name="" id="select-departamentos" data-pregunta="7-1-1">
 						<option value="0">Seleccione</option>
 						<option value="1">Amazonas</option>
 						<option value="2">Apurímac</option>
