@@ -65,3 +65,96 @@ li{
 #contenedor-global .pregunta-compuesta .pregunta-adicional-alternativa-simple{
 	display: none;
 }
+
+/*CSS para ventana encuestador*/
+#listado-alumnos{
+	background-color: white;
+	margin: 0 auto;
+	width: 998px;
+    font-size: 18px;
+}
+#instrucciones{
+	padding: 10px;
+	width: 90%;
+	margin: 0 auto;
+}
+#boton-listado-alumnos {
+    text-align: center;
+    padding-bottom: 20px;
+}
+#contenedor-tabla {
+    padding-bottom: 20px;
+}
+#listado-alumnos #resultado{
+	display: none;
+	padding-bottom: 20px;
+}
+#resultado h2{
+	text-align: center;
+}
+#encabezado {
+    overflow: hidden;
+    font-size: 18px;
+    width: 95%;
+    margin: 20px auto;
+}
+#derecha{
+    float: right;
+    width: 48%;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid gray;
+    border-bottom: 5px solid #e1b3b3;
+    cursor: pointer;
+}
+#izquierda {
+    float: left;
+    width: 48%;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid gray;
+    border-bottom: 5px solid #dd6061;
+    cursor: pointer;
+}
+#derecha label, #izquierda label{
+	cursor: pointer;
+}
+#cuerpo{    
+	margin: 0 auto;
+    padding: 10px 80px;
+}
+#preguntas{
+	display: none;
+}
+#botonListar {
+    width: 150px;
+    height: 40px;
+    font-size: 16px;
+    background-color: #dd6061;
+    color: white;
+    border: 1px solid #dd6061;
+    border-radius: 5px;
+}
+
+/*css para table*/
+table {
+    border-collapse: collapse;
+    width: 80%;
+}
+
+tbody td, thead th {
+    padding: 8px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+tr:hover{background-color:#f5f5f5}
+
+.boton-ver {
+    height: 35px;
+    background-color: #dd6061;
+    border: 1px solid #dd6061;
+    color: white;
+    -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+    box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+}

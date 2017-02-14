@@ -6,11 +6,11 @@
 
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="../css/main.css">
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-	<script src="js/main.js"></script>
+	<script src="../js/main.js"></script>
 </head>
 <body>
 	<div id="listado-alumnos">
@@ -34,7 +34,7 @@
 				<div id="preguntas">
 					<h2>Listado de preguntas</h2>
 					<?php
-						include ('vista/preguntas.php'); 
+						include ('preguntas.php'); 
 					?>
 				</div>
 				<div id="datos-personales">
@@ -45,7 +45,7 @@
 					<label for="">Estado Civil: </label><label for="" id="estadoCivil"></label><br>
 					<label for="">Región de Procedencia: </label><label for="" id="regionProcedencia"></label><br>
 					<label for="">Sexo: </label><label for="" id="sexo"></label><br>
-					<label for="">Direccioón: </label><label for="" id="direccion"></label><br>
+					<label for="">Dirección: </label><label for="" id="direccion"></label><br>
 					<label for="">Año Egreso: </label><label for="" id="anioEgreso"></label><br>
 					<label for="">Teléfono: </label><label for="" id="telefono"></label><br>
 					<label for="">Correo Electrónico: </label><label for="" id="correoElectronico"></label><br>

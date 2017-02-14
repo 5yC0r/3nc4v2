@@ -538,6 +538,51 @@ $(document).ready(function () {
 			});
 		}
 	});
+
+	$("#botonListar").click(function(){
+		var parametros = {"indice": 4};
+        $.ajax({
+            data: parametros,
+            url : '../controlador/Controlador.php',
+            type : 'post',
+            success:  function (response) {
+				var datos = $.parseJSON(response); 
+				console.log(datos);
+				var numeroFilas = datos.length;
+				var contenedorTabla = $('#contenedor-tabla');
+				contenedorTabla.html("<table align='center' id='tabla-alumnos'>"+
+				"<thead>"+
+					"<tr>"+
+				        "<th>Codigo Usuario</th>"+
+						"<th>Nombre(s) Usuario</th>"+
+						"<th>Apellidos Usuario</th>"+
+						"<th>Seleccione</th>"+
+					"</tr>"+
+				"</thead>"+
+				"<tbody id='cuerpoTabla'></tbody>"+
+				"</table>");
+				var cuerpoTabla = $('#cuerpoTabla');
+				for (var i = 0; i < numeroFilas; i++) {
+				    cuerpoTabla.append('<tr><td>'+datos[i].dniAlumno+'</td><td>'+datos[i].nombres+'</td><td>'+datos[i].apellidos+'</td><td><button class=boton-ver onclick= prueba('+datos[i].dniAlumno+')>Ver detalle</button></td></tr>');
+				}       
+            }
+        });
+	});
+
+	$('#derecha').click(function(){
+		$('#datos-personales').hide();
+		$('#preguntas').show();
+		$('#izquierda').css("border-bottom","5px solid #e1b3b3");
+		$('#derecha').css("border-bottom","5px solid #dd6061");
+		
+	});
+
+	$('#izquierda').click(function(){
+		$('#preguntas').hide();
+		$('#datos-personales').show();
+		$('#derecha').css("border-bottom","5px solid #e1b3b3");
+		$('#izquierda').css("border-bottom","5px solid #dd6061");
+	});
 });
 
 function verificarPreguntasRespondidas(){
@@ -645,4 +690,85 @@ function verificarPreguntasRespondidas(){
 		console.log("Faltan preguntas por responder");
 	}
 	return bandera;
+}
+
+function prueba(dniAlumno) {
+	//console.log(dniAlumno);
+	$('#resultado').show();
+	$('#resultado li').each(function(){ 	//se asignan atributo data-seleccionado a cada una de las alternativas -> false
+		$(this).removeData("seleccionado");
+		$(this).removeAttr("seleccionado");
+		$(this).css("color","black");
+	});
+
+	$('#resultado input').each(function(){		//se asigna valor "" (vacio) a cada input
+		$(this).val("")
+	});
+
+	$('#select-departamentos').val(0);			//para el elemento select
+
+	var parametros = {
+		"indice" : 2,
+		"dniAlumno" : dniAlumno
+		};
+		$.ajax({
+                data:  parametros,
+                url:   '../controlador/Controlador.php',
+                type:  'post',
+                success:  function (response) {
+    				var datos = $.parseJSON(response); 
+               		console.log(datos);
+               		var numeroFilas = datos.length;
+               		for (var i = 0; i < numeroFilas; i++) {
+               			$("#"+datos[i].numeroPregunta+"").show();	//mostramos las respuestas, si es que hay alguna que originalmente esta oculta
+               			$("#"+datos[i].numeroPregunta+" ul li[data-indice="+datos[i].respuestaPregunta+"][data-pregunta="+datos[i].numeroPregunta+"]").css('color','red');
+               		}
+                }
+        });
+    var parametrosrt = {
+    	"indice":3,
+    	"dniAlumno" : dniAlumno
+    	};
+    	$.ajax({
+    		data:  parametrosrt,
+            url:   '../controlador/Controlador.php',
+            type:  'post',
+            success: function(response){
+            	var datos = $.parseJSON(response);
+            	console.log(datos);
+            	var numeroFilas = datos.length;
+            	for (var i = 0; i < numeroFilas; i++) {
+            		$("#"+datos[i].numeroPregunta+" .respuesta-tipeada input").val(datos[i].respuestaPregunta);
+            	}
+            }
+    	});
+    var parametrosAlumno = {
+    	"indice" : 5,
+    	"dniAlumno" : dniAlumno
+    	};
+    	$.ajax({
+    		data: parametrosAlumno,
+    		url:   '../controlador/Controlador.php',
+            type:  'post',
+            success: function(response){
+            	var datos = $.parseJSON(response);
+            	//var datos = response;
+            	console.log(datos);
+            	//var numeroFilas = datos.length;
+            	/*for (var i = 0; i < numeroFilas; i++) {
+            		$("#"+datos[i].numeroPregunta+" .respuesta-tipeada input").val(datos[i].respuestaPregunta);
+            	}*/
+            	$('#datos-personales #dniAlumno').html(datos.dniAlumno);
+            	$('#datos-personales #nombres').html(datos.nombres);
+            	$('#datos-personales #apellidos').html(datos.apellidos);
+            	$('#datos-personales #fechaNacimiento').html(datos.fechaNacimiento);
+            	$('#datos-personales #estadoCivil').html(datos.estadoCivil);
+            	$('#datos-personales #regionProcedencia').html(datos.regionProcedencia);
+            	$('#datos-personales #sexo').html(datos.sexo);
+            	$('#datos-personales #direccion').html(datos.direccion);
+            	$('#datos-personales #anioEgreso').html(datos.anioEgreso);
+            	$('#datos-personales #telefono').html(datos.telefono);
+            	$('#datos-personales #correoElectronico').html(datos.correoElectronico);
+            }
+    	});
 }
