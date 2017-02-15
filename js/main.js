@@ -1,5 +1,5 @@
 $(document).ready(function () { 
-	 
+ 	
 	$('#preguntas-titulado').hide(); //desde el inicio ocultamos las preguntas 8 en adelante
 
 	/*Eventos para la pregunta 7 y subpreguntas*/
@@ -409,11 +409,11 @@ $(document).ready(function () {
 
 	/* Fin Evento para preguntas de alternativa multiple -> 3 | 10*/
 
-	$('#btn-guardar').click(function(){
+	$('#boton-guardar-respuestas').click(function(){
 		//para guardar preguntas de alternativa simple
 		var bandera = verificarPreguntasRespondidas();
 		if(bandera == "falso"){
-			alert("Aun hay preguntas sin responder");
+			alert("Aun hay preguntas sin responder. (Marcadas de rojo)");
 		}else{
 			$('li[seleccionado=verdadero]').each(function(){
 				var numeroPregunta = $(this).data("pregunta");
@@ -498,7 +498,7 @@ $(document).ready(function () {
 				console.log(datos);
 				var numeroFilas = datos.length;
 				var contenedorTabla = $('#contenedor-tabla');
-				contenedorTabla.html("<table align='center' id='tabla-alumnos'>"+
+				contenedorTabla.html("<table align='center' id='tabla-alumnos' class='display'>"+
 				"<thead>"+
 					"<tr>"+
 				        "<th>Codigo Usuario</th>"+
@@ -507,12 +507,19 @@ $(document).ready(function () {
 						"<th>Seleccione</th>"+
 					"</tr>"+
 				"</thead>"+
+				"</tfoot>"+
 				"<tbody id='cuerpoTabla'></tbody>"+
 				"</table>");
+
 				var cuerpoTabla = $('#cuerpoTabla');
 				for (var i = 0; i < numeroFilas; i++) {
 				    cuerpoTabla.append('<tr><td>'+datos[i].dniAlumno+'</td><td>'+datos[i].nombres+'</td><td>'+datos[i].apellidos+'</td><td><button class=boton-ver onclick= prueba('+datos[i].dniAlumno+')>Ver detalle</button></td></tr>');
-				}       
+				}     
+				$('#tabla-alumnos').DataTable( {
+			        "scrollY":        "200px",
+			        "scrollCollapse": true,
+			        "paging":         false
+			    } );  
             }
         });
 	});
@@ -769,3 +776,6 @@ function prueba(dniAlumno) {
             }
     	});
 }
+
+
+
