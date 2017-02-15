@@ -104,7 +104,7 @@
 				<li data-pregunta="7" data-indice="b" data-subpregunta="7-2">b) No.</li>
 			</ul>
 		</div>
-
+	</div>
 		<div class="pregunta-alternativa-simple-1" id="7-1">
 			<div class="enunciado">
 				<label for="">A Febrero de 2017. ¿Usted se encuentra habilitado en su colegio profesional?.</label>
@@ -115,6 +115,7 @@
 					<li data-pregunta="7-1" data-indice="b">b) No.</li>
 				</ul>
 			</div>
+		</div>
 
 			<div class="pregunta-alternativa-select-2" id="7-1-1" data-head="a">
 				<div class="enunciado">
@@ -152,7 +153,6 @@
 					</select>
 				</div>
 			</div>
-		</div>
 
 		<div class="pregunta-respuesta-tipeada-1" id="7-2">
 			<div class="enunciado">
@@ -162,7 +162,6 @@
 				<input type="text" data-pregunta="7-2" value="" size="90">
 			</div>
 		</div>
-	</div>
 
 	<div id="preguntas-titulado">
 
@@ -170,12 +169,13 @@
 			<div class="enunciado">
 				<label for="">8. Luego de haber egresado, ¿Se ha capacitado profesionalmente?</label>
 			</div>
-			<div class="alternativas">
+			<div class="alternativas-8">
 				<ul>
 					<li data-pregunta="8" data-indice="a">a) Si.</li>
 					<li data-pregunta="8" data-indice="b">b) No.</li>
 				</ul>
 			</div>
+		</div>
 			<div class="pregunta-adicional-alternativa-multiple" id="8-1" data-head="a">
 				<div class="enunciado">
 					<label for="">Usted se ha capacidado profesionalmente en: (puede marcar más de una opción)</label>
@@ -189,19 +189,18 @@
 					</ul>
 				</div>
 			</div>
-		</div>
 
 		<div class="pregunta-compuesta" id="9">
 			<div class="enunciado">
 				<label for="">9. ¿Usted actualmente esta ejerciendo la profesión?</label>
 			</div>
-			<div class="alternativas">
+			<div class="alternativas-9">
 				<ul>
 					<li data-pregunta="9" data-indice="a">a) Si.</li>
 					<li data-pregunta="9" data-indice="b">b) No.</li>
 				</ul>
 			</div>
-
+		</div>
 			<div class="pregunta-adicional-tipeada" id="9-1" data-head="b">
 				<div class="enunciado">
 					<label for="">¿Cuál es el motivo por el que no ejerce la profesión?</label>
@@ -210,7 +209,6 @@
 					<input type="text" data-pregunta="9-1" value="" size="90">
 				</div>
 			</div>
-		</div>
 
 		<div class="pregunta-alternativa-multiple" id="10">
 			<div class="enunciado">
@@ -221,13 +219,13 @@
 					<li data-pregunta="10" data-subpregunta="10-1" data-indice="a">a) Asistencial.</li>
 					<li data-pregunta="10" data-subpregunta="10-2" data-indice="b">b) Docencia.</li>
 					<li data-pregunta="10" data-indice="c">c) Investigación.</li>
-					<li data-pregunta="10" data-indice="d">d) Odontología legal y forense.</label></li>
+					<li data-pregunta="10" data-indice="d">d) Odontología legal y forense.</li>
 					<li data-pregunta="10" data-indice="e">e) Administración.</li>
-					<li data-pregunta="10" data-indice="f">f) Promoción de la salud.</label></li>
-			</ul></li>
+					<li data-pregunta="10" data-indice="f">f) Promoción de la salud.</li>
 				</ul>
 			</div>
-				<div class="pregunta-alternativa-multiple" id="10-1">
+		</div>
+				<div class="pregunta-alternativa-multiple-1" id="10-1">
 					<div class="enunciado"><label for="">¿En qué centro de salud se desempeña en el área asistencial? (puede marcar más de una opción</label></div>
 					<div class="alternativas">
 						<ul>
@@ -236,7 +234,8 @@
 							<li data-pregunta="10-1" data-subpregunta="10-1-2" data-indice="c">c) Consultorio Odontológico.</li>
 						</ul>
 					</div>
-						<div class="pregunta-alternativa-simple" id="10-1-1">
+				</div>
+						<div class="pregunta-alternativa-simple-2" id="10-1-1">
 							<div class="enunciado"><label for="">¿Cuál es su condición laboral en Minsa o Essalud?</label></div>
 							<div class="alternativas">
 								<ul>
@@ -246,7 +245,7 @@
 								</ul>
 							</div>
 						</div>
-						<div class="pregunta-alternativa-simple" id="10-1-2">
+						<div class="pregunta-alternativa-simple-2" id="10-1-2">
 							<div class="enunciado"><label for="">¿El consultorio Odontológico donde labora es propio?</label></div>
 							<div class="alternativas">
 								<ul>
@@ -255,8 +254,8 @@
 								</ul>
 							</div>
 						</div>
-				</div>
-				<div class="pregunta-alternativa-multiple" id="10-2">
+
+				<div class="pregunta-alternativa-multiple-1" id="10-2">
 					<div class="enunciado"><label for="">¿En qué centro se desempeña como docente? (puede marcar más de una opción)</label></div>
 					<div class="alternativas">
 						<ul>
@@ -265,7 +264,6 @@
 						</ul>
 					</div>
 				</div>
-		</div>
 
 		<div class="pregunta-alternativa-simple" id="11">
 			<div class="enunciado">
@@ -296,7 +294,7 @@
 			<div class="enunciado">
 				<label for="">13. Como trabajador dependiente, ¿En cuánto tiempo después de egresado consiguió trabajo?</label>
 			</div>
-			<div class="alternativas">
+			<div class="alternativas-13">
 				<ul>
 					<li data-pregunta="13" data-indice="a">a) Menos de 1 año.</li>
 					<li data-pregunta="13" data-indice="b">b) Entre 1 y 2 años.</li>
@@ -305,8 +303,8 @@
 					<li data-pregunta="13" data-indice="e">e) No realicé labores como trabajador dependiente.</li>
 				</ul>
 			</div>
-			
-			<div class="pregunta-adicional-alternativa-simple" id="14">
+		</div>
+			<div class="pregunta-adicional-alternativa-simple-1" id="14">
 				<div class="enunciado">
 					<label for="">14. ¿Usted cómo consiguió trabajo de cirujano dentista dependiente?</label>
 				</div>
@@ -320,7 +318,7 @@
 				</div>
 			</div>
 
-			<div class="pregunta-adicional-alternativa-simple" id="15">
+			<div class="pregunta-adicional-alternativa-simple-1" id="15">
 				<div class="enunciado">
 					<label for="">15. ¿Cuál fue el grado de dificultad para conseguir empleo como dependiente?</label>
 				</div>
@@ -333,7 +331,7 @@
 				</div>
 			</div>
 
-			<div class="pregunta-adicional-alternativa-simple" id="16">
+			<div class="pregunta-adicional-alternativa-simple-1" id="16">
 				<div class="enunciado">
 					<label for="">16. Como trabajador independiente, ¿En cuánto tiempo comenzó a tener ingresos?</label>
 				</div>
@@ -347,7 +345,6 @@
 					</ul>
 				</div>
 			</div>
-		</div>
 		
 		<div class="pregunta-alternativa-simple" id="17">
 			<div class="enunciado">
@@ -417,9 +414,4 @@
 			</div>
 		</div>
 	</div>
-
-	<button id="boton">Dale</button>
-	<button id="btn-verificar">verificar</button>
-	<button id="btn-guardar">guardar</button>
-	<div id="lista-preguntas-sin-respuesta"></div>
 </div>

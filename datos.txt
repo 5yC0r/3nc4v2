@@ -134,3 +134,18 @@
 			console.log(numeroPregunta + " > " + respuesta);
 		});*/
 	});
+
+	
+	$('#boton').click(function(){
+		var parametros = {
+		"indice" : 6
+		};
+		$.ajax({
+                data:  parametros,
+                url:   'controlador/Controlador.php',
+                type:  'post',
+                success:  function (response) {
+    				
+                }
+        });
+	});

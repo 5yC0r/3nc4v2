@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	$_SESSION['dniAlumno']=12345678;
+	$_SESSION['dniAlumno']=72540879;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +23,9 @@
 			include ('vista/preguntas.php'); 
 		?>
 
-		<!--<button type="button" class="btn btn-primary btn-lg" id="boton-guardar-respuestas">
+		<button type="button" class="btn btn-primary btn-lg" id="boton-guardar-respuestas">
 			Guardar Respuestas
-		</button>-->
+		</button>
 
 		<div id="resultado">
 		</div>

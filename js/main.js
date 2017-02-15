@@ -2,6 +2,7 @@ $(document).ready(function () {
 	 
 	$('#preguntas-titulado').hide(); //desde el inicio ocultamos las preguntas 8 en adelante
 
+	/*Eventos para la pregunta 7 y subpreguntas*/
 	$('#contenedor-global #7 .alternativas-simple-compuesta li').click(function(){
 		var alternativa = $(this).data("indice");
 		console.log(alternativa);
@@ -12,7 +13,7 @@ $(document).ready(function () {
 
 			//luego de ocultar estas preguntas aparte de no contar para guardar en la bd se debe 
 			
-			$('#preguntas-titulado .pregunta-alternativa-simple, #preguntas-titulado .pregunta-respuesta-tipeada, #preguntas-titulado .pregunta-adicional-tipeada, #preguntas-titulado .pregunta-alternativa-multiple, #preguntas-titulado .pregunta-compuesta,#preguntas-titulado .pregunta-adicional-alternativa-simple').each(function(){
+			$('#preguntas-titulado .pregunta-alternativa-simple, #preguntas-titulado .pregunta-respuesta-tipeada, #preguntas-titulado .pregunta-adicional-tipeada, #preguntas-titulado .pregunta-alternativa-multiple-1,#preguntas-titulado .pregunta-alternativa-multiple, #preguntas-titulado .pregunta-compuesta,#preguntas-titulado .pregunta-adicional-alternativa-simple-1, #preguntas-titulado .pregunta-adicional-alternativa-simple-2').each(function(){
 				$(this).removeAttr("data-marcado");
 				$(this).removeData("marcado");
 			});
@@ -20,11 +21,15 @@ $(document).ready(function () {
 			$('#preguntas-titulado li').each(function(){
 				$(this).removeAttr("seleccionado");
 				$(this).removeData("seleccionado");
+				$(this).css('color','black');
 			});
 
 			$('#preguntas-titulado input').each(function(){
 				$(this).val('');
 			});
+
+			$('#select-departamentos').val(0);
+			$('#select-departamentos').change();
 		}
 	});
 
@@ -85,7 +90,7 @@ $(document).ready(function () {
 		$("#7-1-1").css("color","black");
 	});
 
-	$('.pregunta-alternativa-simple-compuesta .pregunta-alternativa-simple-1 .alternativas li').click(function(){
+	$('.pregunta-alternativa-simple-1 .alternativas li').click(function(){
 		var numeroPregunta = $(this).data('pregunta');
 		$("#"+numeroPregunta+"").attr("data-marcado","marcado");	//se agrega atritubo 'data-marcado'->'marcado' a la pregunta con el numero obtenido
 		$("#"+numeroPregunta+"").data("marcado","marcado");			//a veces el el metodo .attr() no vasta, asi que tambien usamos .data()
@@ -117,8 +122,10 @@ $(document).ready(function () {
 			$('#select-departamentos').change();
 		}
 	});
+	/*Fin de Eventos para la pregunta 7 y subpreguntas*/
 
-	$('#contenedor-global .pregunta-compuesta .alternativas li').click(function(){
+	/*Eventos para la pregunta 8 y 8-1*/
+	$('#contenedor-global .pregunta-compuesta .alternativas-8 li').click(function(){
 		
 		var numeroPregunta = $(this).data('pregunta'); 	//se obtiene numero de pregunta
 		var alternativa = $(this).data('indice');		//se ontiene indice de alternativa (a || b ||c ...)
@@ -126,7 +133,7 @@ $(document).ready(function () {
 		$("#"+numeroPregunta+"").attr("data-marcado","marcado");	//se agrega atritubo 'data-marcado'->'marcado' a la pregunta con el numero obtenido
 		$("#"+numeroPregunta+"").data("marcado","marcado");			//a veces el el metodo .attr() no vasta, asi que tambien usamos .data()
 		$("#"+numeroPregunta+" .enunciado").css("color","black");	
-		$("#"+numeroPregunta+" .alternativas li[data-pregunta="+numeroPregunta+"]").each(function(){ 	
+		$("#"+numeroPregunta+" .alternativas-8 li[data-pregunta="+numeroPregunta+"]").each(function(){ 	
 			$(this).removeAttr("seleccionado");								
 			$(this).removeData("seleccionado");
 			$(this).css("color","gray");				//se cambia de color las alternativas
@@ -135,9 +142,71 @@ $(document).ready(function () {
 		$(this).css('color','red');						//se cambia color la alternativa seleccionada
 		$(this).attr("seleccionado","verdadero"); 		// se cambia atributo data-seleccionado -> true
 		$(this).data("seleccionado","verdadero");
+		adicional_alternativa_multiple(alternativa);
+	});
 
-		/*Pregunta compuesta - respuesta tipeada*/
-		$("#"+numeroPregunta+" .pregunta-adicional-tipeada").each(function(){ 		
+	function adicional_alternativa_multiple(alternativa){
+		$(".pregunta-adicional-alternativa-multiple").each(function(){
+			var subordinante = $(this).data("head");
+			if(alternativa == subordinante){
+				$(this).show();
+			}else{
+				var numeroPreguntaAdicional = $(this).attr('id');
+				console.log(numeroPreguntaAdicional);
+				$("#"+numeroPreguntaAdicional+" .grupo-alternativas-pregunta-multiple li[data-pregunta="+numeroPreguntaAdicional+"]").each(function(){ 		
+					$(this).removeAttr("seleccionado");	
+					$(this).removeData("seleccionado");					
+					$(this).css("color","black");				
+				});
+				$(this).hide();
+				$("#"+numeroPreguntaAdicional+"").removeAttr("data-marcado");
+				$("#"+numeroPreguntaAdicional+"").removeData("marcado");
+			}
+		});
+	}
+
+	$('#contenedor-global .pregunta-adicional-alternativa-multiple li').click(function(){
+		var numeroPregunta = $(this).data('pregunta'); 	//se obtiene numero de pregunta
+		var seleccionado = $(this).data('seleccionado');
+
+		if(seleccionado == null){
+			$(this).attr("seleccionado","verdadero");	// no funciona para cambiar internamente, solo de forma visual
+			$(this).data("seleccionado","verdadero"); 			// necesario para cambiar estado del atributo data-seleccionado, este si lo hace de forma interna
+			$(this).css('color','red');
+			$("#"+numeroPregunta+"").attr("data-marcado","marcado");	//se agrega atritubo 'data-marcado'->'marcado' a la pregunta con el numero obtenido
+			$("#"+numeroPregunta+"").data("marcado","marcado");			//a veces el el metodo .attr() no vasta, asi que tambien usamos .data()
+			$("#"+numeroPregunta+" .enunciado").css("color","black");	
+		}else{
+			$(this).removeAttr("seleccionado");
+			$(this).removeData("seleccionado");
+			$(this).css('color','black');
+		}
+	});
+	/* Fin de eventos para la preguntas 8 y 8-1 */
+
+	/* Eventos para la pregunta 9 y 9-1 */
+	$('#contenedor-global .pregunta-compuesta .alternativas-9 li').click(function(){
+		
+		var numeroPregunta = $(this).data('pregunta'); 	//se obtiene numero de pregunta
+		var alternativa = $(this).data('indice');		//se ontiene indice de alternativa (a || b ||c ...)
+
+		$("#"+numeroPregunta+"").attr("data-marcado","marcado");	//se agrega atritubo 'data-marcado'->'marcado' a la pregunta con el numero obtenido
+		$("#"+numeroPregunta+"").data("marcado","marcado");			//a veces el el metodo .attr() no vasta, asi que tambien usamos .data()
+		$("#"+numeroPregunta+" .enunciado").css("color","black");	
+		$("#"+numeroPregunta+" .alternativas-9 li[data-pregunta="+numeroPregunta+"]").each(function(){ 	
+			$(this).removeAttr("seleccionado");								
+			$(this).removeData("seleccionado");
+			$(this).css("color","gray");				//se cambia de color las alternativas
+		});
+
+		$(this).css('color','red');						//se cambia color la alternativa seleccionada
+		$(this).attr("seleccionado","verdadero"); 		// se cambia atributo data-seleccionado -> true
+		$(this).data("seleccionado","verdadero");
+		adicional_pregunta_tipeada(alternativa);
+	});
+
+	function adicional_pregunta_tipeada(alternativa){
+		$(".pregunta-adicional-tipeada").each(function(){ 		
 			var adicional = $(this).data("head");
 			if(alternativa == adicional){
 				var numeroPreguntaAdicional = $(this).attr('id');								
@@ -147,15 +216,40 @@ $(document).ready(function () {
 				$(this).show();
 			}else{
 				var numeroPreguntaAdicional = $(this).attr('id');
+				$(this).removeAttr('data-marcado');
+				$(this).removeData('marcado');
 				$("#"+numeroPreguntaAdicional+" .respuesta-tipeada input").each(function(){ 		
-					$(this).val("");	//valor vacio para la caja de texto al ocultarse								
+					$(this).val("");	//valor vacio para la caja de texto al ocultarse
 				});
 				$(this).hide();
 			}
 		});
+	}
+	/* Fin de eventos para la preguntas 9 y 9-1 */
 
-		/*Pregunta compuesta - alternativa simple*/
-		$("#"+numeroPregunta+" .pregunta-adicional-alternativa-simple").each(function(){
+	/* Eventos para la pregunta 13, 14, 15 y 16 */
+	$('#contenedor-global .pregunta-compuesta .alternativas-13 li').click(function(){
+		
+		var numeroPregunta = $(this).data('pregunta'); 	//se obtiene numero de pregunta
+		var alternativa = $(this).data('indice');		//se ontiene indice de alternativa (a || b ||c ...)
+
+		$("#"+numeroPregunta+"").attr("data-marcado","marcado");	//se agrega atritubo 'data-marcado'->'marcado' a la pregunta con el numero obtenido
+		$("#"+numeroPregunta+"").data("marcado","marcado");			//a veces el el metodo .attr() no vasta, asi que tambien usamos .data()
+		$("#"+numeroPregunta+" .enunciado").css("color","black");	
+		$("#"+numeroPregunta+" .alternativas-13 li[data-pregunta="+numeroPregunta+"]").each(function(){ 	
+			$(this).removeAttr("seleccionado");								
+			$(this).removeData("seleccionado");
+			$(this).css("color","gray");				//se cambia de color las alternativas
+		});
+
+		$(this).css('color','red');						//se cambia color la alternativa seleccionada
+		$(this).attr("seleccionado","verdadero"); 		// se cambia atributo data-seleccionado -> true
+		$(this).data("seleccionado","verdadero");
+		adicional_alternativa_simple(alternativa);
+	});	
+
+	function adicional_alternativa_simple(alternativa){
+		$(".pregunta-adicional-alternativa-simple-1").each(function(){
 			if(alternativa == "a" || alternativa == "b" || alternativa == "c" || alternativa == "d"){
 				$("#14, #15").show();
 				$("#16 .alternativas li[data-pregunta=16]").each(function(){ 		
@@ -177,48 +271,13 @@ $(document).ready(function () {
 				$("#14,#15").hide();
 				$("#16").show();
 			}
+			
 		});
+	}
 
-		/*Pregunta compuesta - alternativa multiple*/
-		$("#"+numeroPregunta+" .pregunta-adicional-alternativa-multiple").each(function(){
-			var subordinante = $(this).data("head");
-			if(alternativa == subordinante){
-				$(this).show();
-			}else{
-				var numeroPreguntaAdicional = $(this).attr('id');
-				$("#"+numeroPreguntaAdicional+" .grupo-alternativas-pregunta-multiple li[data-pregunta="+numeroPreguntaAdicional+"]").each(function(){ 		
-					$(this).removeAttr("data-seleccionado");	
-					$(this).removeData("seleccionado");					
-					$(this).css("color","black");				
-				});
-				$(this).hide();
-				$("#"+numeroPreguntaAdicional+"").removeAttr("data-marcado");
-				$("#"+numeroPreguntaAdicional+"").removeData("marcado");
-			}
-		});
-	});
-
-	$('#contenedor-global .pregunta-adicional-alternativa-multiple li').click(function(){
-		var numeroPregunta = $(this).data('pregunta'); 	//se obtiene numero de pregunta
-		var seleccionado = $(this).data('seleccionado');
-
-		if(seleccionado == null){
-			$(this).attr("seleccionado","verdadero");	// no funciona para cambiar internamente, solo de forma visual
-			$(this).data("seleccionado","verdadero"); 			// necesario para cambiar estado del atributo data-seleccionado, este si lo hace de forma interna
-			$(this).css('color','red');
-			$("#"+numeroPregunta+"").attr("data-marcado","marcado");	//se agrega atritubo 'data-marcado'->'marcado' a la pregunta con el numero obtenido
-			$("#"+numeroPregunta+"").data("marcado","marcado");			//a veces el el metodo .attr() no vasta, asi que tambien usamos .data()
-			$("#"+numeroPregunta+" .enunciado").css("color","black");	
-		}else{
-			$(this).removeAttr("data-seleccionado");
-			$(this).removeData("seleccionado");
-			$(this).css('color','black');
-		}
-	});
-
-	$('#contenedor-global  .pregunta-adicional-alternativa-simple .alternativas li').click(function(){
+	$('#contenedor-global  .pregunta-adicional-alternativa-simple-1 .alternativas li').click(function(){
 		var numeroPregunta = $(this).data('pregunta'); //se obtiene numero de pregunta
-		$("#"+numeroPregunta+" .grupo-alternativas-pregunta-simple  li").each(function(){ 	
+		$("#"+numeroPregunta+" .alternativas  li").each(function(){ 	
 			$(this).removeAttr("seleccionado");			//se cambia de color las alternativas	
 			$(this).removeData("seleccionad");					
 			$(this).css("color","gray");				//se cambia atributo data-seleccionado -> true
@@ -229,8 +288,11 @@ $(document).ready(function () {
 
 		$("#"+numeroPregunta+"").attr("data-marcado","marcado");
 		$("#"+numeroPregunta+"").data("marcado","marcado");
+		$("#"+numeroPregunta+" .enunciado").css("color","black");
 	});
+	/* Fin de eventos para la pregunta 13, 14, 15 y 16 */
 
+	/*Inicio Evento para preguntas de alternativa simple -> 1 | 2 | 4 | 5 | 6 | 11 | 12 | 17 | 20 | 21 | 22*/
 	$('#contenedor-global .pregunta-alternativa-simple .alternativas li').on("click",function(){
 		var numeroPregunta = $(this).data('pregunta'); 	//se obtiene numero de pregunta
 		var alternativa = $(this).data('indice');		//se ontiene indice de alternativa (a || b ||c ...)
@@ -247,7 +309,9 @@ $(document).ready(function () {
 		$(this).attr("seleccionado","verdadero"); 		//se cambia atributo data-seleccionado -> true
 		$(this).data("seleccionado","verdadero");
 	});
+	/* Fin Evento para preguntas de alternativa simple -> 1 | 2 | 4 | 5 | 6 | 11 | 12 | 17 | 20 | 21 | 22 */  
 
+	/* Evento para las preguntas 18 y 19 */
 	$('#contenedor-global .pregunta-respuesta-tipeada .respuesta-tipeada input,#contenedor-global .pregunta-respuesta-tipeada-1 .respuesta-tipeada input,#contenedor-global .pregunta-adicional-tipeada .respuesta-tipeada input').on("input",function(){
 		var numeroPregunta = $(this).data('pregunta'); //se obtiene numero de pregunta
 		if($(this).val() !== ""){
@@ -261,8 +325,10 @@ $(document).ready(function () {
 			//console.log("vacio");
 		}
 	});
+	/*Fin de evento para las preguntas 18 y 19 */
 
-	$('#contenedor-global .pregunta-alternativa-multiple .alternativas li').on( "click",function(){
+	/* Inicio Evento para preguntas de alternativa multiple -> 3 | 10*/
+	$('#contenedor-global .pregunta-alternativa-multiple .alternativas li, #contenedor-global .pregunta-alternativa-multiple-1 .alternativas li').on( "click",function(){
 		var numeroPregunta = $(this).data('pregunta'); 	//se obtiene numero de pregunta
 		var opcionNinguna = $(this).data('ninguna');	
 
@@ -295,6 +361,19 @@ $(document).ready(function () {
 		}else{
 			var subpregunta = $(this).data("subpregunta");
 			if(subpregunta != null){					//se busca si tinene alguna subpregunta y se oculta
+				$("#"+subpregunta+" .alternativas li").each(function(){
+					var subsubpregunta = $(this).data('subpregunta');
+					if(subsubpregunta != null){
+						$("#"+subsubpregunta+"").removeAttr('data-marcado');
+						$("#"+subsubpregunta+"").removeData('data-marcado');
+						$("#"+subsubpregunta+" li").each(function(){
+							$(this).removeAttr("seleccionado");
+							$(this).removeData("seleccionado");
+							$(this).css("color","black");
+						})
+						$("#"+subsubpregunta+"").hide();
+					}
+				});
 				$("#"+subpregunta+"").hide();
 				$("#"+subpregunta+"").removeAttr("data-marcado");
 				$("#"+subpregunta+"").removeData("marcado");	
@@ -310,156 +389,25 @@ $(document).ready(function () {
 			$(this).css("color","black");
 		}
 	});
-
-	$('#contenedor-global .pregunta-alternativa-multiple .pregunta-alternativa-simple .alternativas li').on( "click",function(){
+	
+	$('#contenedor-global .pregunta-alternativa-simple-2 .alternativas li').on("click",function(){
 		var numeroPregunta = $(this).data('pregunta'); 	//se obtiene numero de pregunta
 		var alternativa = $(this).data('indice');		//se ontiene indice de alternativa (a || b ||c ...)
 
 		$("#"+numeroPregunta+"").attr("data-marcado","marcado");	//se agrega atritubo 'data-marcado'->'marcado' a la pregunta con el numero obtenido
 		$("#"+numeroPregunta+"").data("marcado","marcado");			//a veces el el metodo .attr() no vasta, asi que tambien usamos .data()
 		$("#"+numeroPregunta+" .enunciado").css("color","black");	
-		$("#"+numeroPregunta+" .alternativas li[data-pregunta="+numeroPregunta+"]").each(function(){ 	
-			$(this).removeAttr("seleccionado");								
-			$(this).removeData("seleccionado");
-			$(this).css("color","gray");				//se cambia de color las alternativas
+		$("#"+numeroPregunta+" > .alternativas li").each(function(){ 	
+			$(this).removeAttr("seleccionado");		//se cambia de color las alternativas
+			$(this).removeData("seleccionado");						
+			$(this).css("color","gray");				//se cambia atributo data-seleccionado -> true
 		});
-
-		$(this).css('color','red');						//se cambia color la alternativa seleccionada
-		$(this).attr("seleccionado","verdadero"); 		// se cambia atributo data-seleccionado -> true
+		$(this).css('color','red'); 					//se cambia color la alternativa seleccionada
+		$(this).attr("seleccionado","verdadero"); 		//se cambia atributo data-seleccionado -> true
 		$(this).data("seleccionado","verdadero");
 	});
 
-	$('#boton').click(function(){
-		/*$('li[seleccionado=verdadero]').each(function(){
-			var pregunta = $(this).data("pregunta");
-			var respuesta = $(this).data("indice");
-			console.log(pregunta + "-" + respuesta);
-		});
-		$('input').each(function(){
-			if($(this).val()!= ''){
-				var pregunta = $(this).data("pregunta");
-				var valor = $(this).val();
-				console.log(pregunta + "-" + valor);
-			}
-		});*/
-		var parametros = {
-		"indice" : 6
-		};
-		$.ajax({
-                data:  parametros,
-                url:   'controlador/Controlador.php',
-                type:  'post',
-                success:  function (response) {
-    				
-                }
-        });
-	});
-
-	$('#btn-verificar').click(function(){
-		var j = 1;
-		var alternativa_a = $('#7 .alternativas-simple-compuesta li[data-indice=a]').data("seleccionado");
-		var alternativa_b = $('#7 .alternativas-simple-compuesta li[data-indice=b]').data("seleccionado");
-		var bandera = "verdadero";
-		if(alternativa_a == "verdadero"){i=22}else{i=7};
-
-		while(j<=i){
-			if($("#"+j+"").data("marcado")==null){	
-				$("#"+j+" > .enunciado").css("color","red");
-				bandera = "falso";
-			}else{
-				$("#"+j+" > .enunciado").css("color","black");
-			}
-			
-			if(j==7){
-				if(alternativa_a == "verdadero"){
-					if($("#7-1").data("marcado")==null ){
-						$("#7-1 .enunciado").css("color","red");
-						bandera = "falso";
-					}else{
-						$("#7-1 .enunciado").css("color","black");
-					}
-				}
-
-				if(alternativa_b == "verdadero"){
-					if($("#7-2").data("marcado")==null ){
-						$("#7-2 .enunciado").css("color","red");
-						bandera = "falso";
-					}else{
-						$("#7-2 .enunciado").css("color","black");
-					}
-				}
-				
-				if($('#7-1 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero"){
-					if($("#7-1-1").data("marcado")==null ){
-						$("#7-1-1 .enunciado").css("color","red");
-						bandera = "falso";
-					}else{
-						$("#7-1-1 .enunciado").css("color","black");
-					}
-				}
-			}
-
-			if(j==8 && $('#8 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero"){
-				if($("#8-1").data("marcado")==null ){
-					$("#8-1 .enunciado").css("color","red");
-					bandera = "falso";
-				}else{
-					$("#8-1 .enunciado").css("color","black");
-				}
-			}
-
-			if(j==9 && $('#9 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero"){
-				if($("#9-1").data("marcado")==null ){
-					$("#9-1 .enunciado").css("color","red");
-					bandera = "falso";
-				}else{
-					$("#9-1 .enunciado").css("color","black");
-				}
-			}
-
-			if(j==10){
-				if($('#10 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero"){
-					if($("#10-1").data("marcado")==null ){
-						$("#10-1 .enunciado").css("color","red");
-						bandera = "falso";
-					}else{
-						$("#10-1 .enunciado").css("color","black");
-					}
-				}
-				if($('#10 .alternativas li[data-indice=b]').data("seleccionado") == "verdadero"){
-					if($("#10-2").data("marcado")==null ){
-						$("#10-2 .enunciado").css("color","red");
-						bandera = "falso";
-					}else{
-						$("#10-2 .enunciado").css("color","black");
-					}
-				}
-				if($('#10-1 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero" || $('#10-1 .alternativas li[data-indice=b]').data("seleccionado") == "verdadero"){
-					if($("#10-1-1").data("marcado")==null ){
-						$("#10-1-1 .enunciado").css("color","red");
-						bandera = "falso";
-					}else{
-						$("#10-1-1 .enunciado").css("color","black");
-					}
-				}
-				if($('#10-1 .alternativas li[data-indice=c]').data("seleccionado") == "verdadero"){
-					if($("#10-1-2").data("marcado")==null ){
-						$("#10-1-2 .enunciado").css("color","red");
-						bandera = "falso";
-					}else{
-						$("#10-1-2 .enunciado").css("color","black");
-					}
-				}
-			}
-			j++;
-		}
-		
-		if(bandera == "verdadero"){
-			console.log("todo");
-		}else{
-			console.log("Faltan preguntas por responder");
-		}
-	});
+	/* Fin Evento para preguntas de alternativa multiple -> 3 | 10*/
 
 	$('#btn-guardar').click(function(){
 		//para guardar preguntas de alternativa simple
@@ -593,8 +541,9 @@ function verificarPreguntasRespondidas(){
 	if(alternativa_a == "verdadero"){i=22}else{i=7};
 
 	while(j<=i){
-		if($("#"+j+"").data("marcado")==null){	
+		if($("#"+j+"").data("marcado")==null && j!= 14 && j != 15  && j != 16 ){	
 			$("#"+j+" > .enunciado").css("color","red");
+			console.log("<-> "+j);
 			bandera = "falso";
 		}else{
 			$("#"+j+" > .enunciado").css("color","black");
@@ -604,6 +553,7 @@ function verificarPreguntasRespondidas(){
 			if(alternativa_a == "verdadero"){
 				if($("#7-1").data("marcado")==null ){
 					$("#7-1 .enunciado").css("color","red");
+					console.log("-> 7-1");
 					bandera = "falso";
 				}else{
 					$("#7-1 .enunciado").css("color","black");
@@ -613,6 +563,7 @@ function verificarPreguntasRespondidas(){
 			if(alternativa_b == "verdadero"){
 				if($("#7-2").data("marcado")==null ){
 					$("#7-2 .enunciado").css("color","red");
+					console.log("-> 7-2");
 					bandera = "falso";
 				}else{
 					$("#7-2 .enunciado").css("color","black");
@@ -622,6 +573,7 @@ function verificarPreguntasRespondidas(){
 			if($('#7-1 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero"){
 				if($("#7-1-1").data("marcado")==null ){
 					$("#7-1-1 .enunciado").css("color","red");
+					console.log("-> 7-1-1");
 					bandera = "falso";
 				}else{
 					$("#7-1-1 .enunciado").css("color","black");
@@ -629,18 +581,20 @@ function verificarPreguntasRespondidas(){
 			}
 		}
 
-		if(j==8 && $('#8 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero"){
+		if(j==8 && $('#8 .alternativas-8 li[data-indice=a]').data("seleccionado") == "verdadero"){
 			if($("#8-1").data("marcado")==null ){
 				$("#8-1 .enunciado").css("color","red");
+				console.log("-> 8-1");
 				bandera = "falso";
 			}else{
 				$("#8-1 .enunciado").css("color","black");
 			}
 		}
 
-		if(j==9 && $('#9 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero"){
+		if(j==9 && $('#9 .alternativas-9 li[data-indice=b]').data("seleccionado") == "verdadero"){
 			if($("#9-1").data("marcado")==null ){
 				$("#9-1 .enunciado").css("color","red");
+				console.log("-> 9-1");
 				bandera = "falso";
 			}else{
 				$("#9-1 .enunciado").css("color","black");
@@ -651,6 +605,7 @@ function verificarPreguntasRespondidas(){
 			if($('#10 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero"){
 				if($("#10-1").data("marcado")==null ){
 					$("#10-1 .enunciado").css("color","red");
+					console.log("-> 10-1");
 					bandera = "falso";
 				}else{
 					$("#10-1 .enunciado").css("color","black");
@@ -659,6 +614,7 @@ function verificarPreguntasRespondidas(){
 			if($('#10 .alternativas li[data-indice=b]').data("seleccionado") == "verdadero"){
 				if($("#10-2").data("marcado")==null ){
 					$("#10-2 .enunciado").css("color","red");
+					console.log("-> 10-2");
 					bandera = "falso";
 				}else{
 					$("#10-2 .enunciado").css("color","black");
@@ -667,6 +623,7 @@ function verificarPreguntasRespondidas(){
 			if($('#10-1 .alternativas li[data-indice=a]').data("seleccionado") == "verdadero" || $('#10-1 .alternativas li[data-indice=b]').data("seleccionado") == "verdadero"){
 				if($("#10-1-1").data("marcado")==null ){
 					$("#10-1-1 .enunciado").css("color","red");
+					console.log("-> 10-1-1");
 					bandera = "falso";
 				}else{
 					$("#10-1-1 .enunciado").css("color","black");
@@ -675,9 +632,39 @@ function verificarPreguntasRespondidas(){
 			if($('#10-1 .alternativas li[data-indice=c]').data("seleccionado") == "verdadero"){
 				if($("#10-1-2").data("marcado")==null ){
 					$("#10-1-2 .enunciado").css("color","red");
+					console.log("-> 10-1-2");
 					bandera = "falso";
 				}else{
 					$("#10-1-2 .enunciado").css("color","black");
+				}
+			}
+		}
+		if(j==13){
+			if($('#13 .alternativas-13 li[data-indice=a]').data("seleccionado") == "verdadero" || $('#13 .alternativas-13 li[data-indice=b]').data("seleccionado") == "verdadero" || $('#13 .alternativas-13 li[data-indice=c]').data("seleccionado") == "verdadero" || $('#13 .alternativas-13 li[data-indice=d]').data("seleccionado") == "verdadero"){
+				if($("#14").data("marcado")==null ){
+					$("#14 .enunciado").css("color","red");
+					console.log("-> 14");
+					bandera = "falso";
+				}else{
+					$("#14 .enunciado").css("color","black");
+				}
+
+				if($("#15").data("marcado")==null ){
+					$("#15 .enunciado").css("color","red");
+					console.log("-> 15");
+					bandera = "falso";
+				}else{
+					$("#15 .enunciado").css("color","black");
+				}
+			}
+
+			if($('#13 .alternativas-13 li[data-indice=e]').data("seleccionado") == "verdadero"){
+				if($("#16").data("marcado")==null ){
+					$("#16 .enunciado").css("color","red");
+					console.log("-> 16");
+					bandera = "falso";
+				}else{
+					$("#16 .enunciado").css("color","black");
 				}
 			}
 		}
@@ -720,6 +707,14 @@ function prueba(dniAlumno) {
                		console.log(datos);
                		var numeroFilas = datos.length;
                		for (var i = 0; i < numeroFilas; i++) {
+               			if(datos[i].numeroPregunta == 7 && datos[i].respuestaPregunta == 'a'){
+               				$('#preguntas-titulado').show();
+               			}
+               			if(datos[i].numeroPregunta == '7-1-1'){
+               				$('#select-departamentos').val(datos[i].respuestaPregunta);
+               				$('#select-departamentos').attr('disabled','disabled');
+
+               			}
                			$("#"+datos[i].numeroPregunta+"").show();	//mostramos las respuestas, si es que hay alguna que originalmente esta oculta
                			$("#"+datos[i].numeroPregunta+" ul li[data-indice="+datos[i].respuestaPregunta+"][data-pregunta="+datos[i].numeroPregunta+"]").css('color','red');
                		}
@@ -738,7 +733,9 @@ function prueba(dniAlumno) {
             	console.log(datos);
             	var numeroFilas = datos.length;
             	for (var i = 0; i < numeroFilas; i++) {
+            		$("#"+datos[i].numeroPregunta+"").show();
             		$("#"+datos[i].numeroPregunta+" .respuesta-tipeada input").val(datos[i].respuestaPregunta);
+            		$("#"+datos[i].numeroPregunta+" .respuesta-tipeada input").attr('disabled','disabled');
             	}
             }
     	});

@@ -44,32 +44,49 @@ li{
 #preguntas-titulado{
 	display: none;
 }
-#contenedor-global .pregunta-alternativa-multiple .pregunta-alternativa-multiple {
+.pregunta-adicional-alternativa-simple-1, .pregunta-adicional-alternativa-simple-1{
+    display: none;
+}
+.pregunta-alternativa-multiple-1, .pregunta-alternativa-multiple-1{
 	display: none;
 }
-#contenedor-global .pregunta-alternativa-multiple .pregunta-alternativa-multiple .pregunta-alternativa-simple {
+.pregunta-alternativa-simple-2, .pregunta-alternativa-simple-2{
 	display: none;
 }
-#contenedor-global .pregunta-alternativa-simple-compuesta .pregunta-alternativa-simple-1{
+.pregunta-alternativa-simple-1{
 	display: none;
 }
-#contenedor-global .pregunta-alternativa-simple-compuesta .pregunta-respuesta-tipeada-1{
+.pregunta-respuesta-tipeada-1{
 	display: none;
 }
-#contenedor-global .pregunta-alternativa-select-2{
+.pregunta-alternativa-select-2{
 	display: none;
 }
-#contenedor-global .pregunta-adicional-alternativa-multiple, #contenedor-global .pregunta-adicional-tipeada{
+.pregunta-adicional-alternativa-multiple, .pregunta-adicional-tipeada{
 	display: none;
 }
-#contenedor-global .pregunta-compuesta .pregunta-adicional-alternativa-simple{
-	display: none;
+#boton-guardar-respuestas{
+    float: right;
+    text-align: center;
+    margin-right: 50px;
+    margin-bottom: 30px;
+    float: right;
+    height: 50px;
+    width: 200px;
+    /*background-color: green;*/
+    color: white;
+    font-size: 18px;
+    border: 1px solid #337ab7;
+    border-radius: 10px;
+    cursor: pointer;
+    -webkit-box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.5);
+    box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.5);
 }
-
 /*CSS para ventana encuestador*/
 #listado-alumnos{
 	background-color: white;
-	margin: 0 auto;
+	margin: 5px auto;
 	width: 998px;
     font-size: 18px;
 }
@@ -77,6 +94,23 @@ li{
 	padding: 10px;
 	width: 90%;
 	margin: 0 auto;
+    clear: both;
+}
+#cerrar-sesion{
+    padding: 10px;
+    color: black;
+    float: right;
+    overflow: hidden;
+    font-size: 15px;
+}
+#cerrar-sesion a label:hover{
+    color: #dd6061;
+    border-bottom: 2px solid #dd6061;
+}
+#cerrar-sesion a label{
+    color: black;
+    cursor: pointer;
+    border-bottom: 2px solid black;
 }
 #boton-listado-alumnos {
     text-align: center;

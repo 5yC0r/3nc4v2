@@ -14,6 +14,10 @@
 </head>
 <body>
 	<div id="listado-alumnos">
+		<div id="cerrar-sesion">
+			<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+			<a href="../cerrarSesion.php"><label for="">Cerrar Sesión</label></a>
+		</div>
 		<div id="instrucciones">
 			<p>Esta es la lista de las personas que han respondido la encuesta. Darle click al botón "Ver detalle" en la misma fila del nombre de la persona para ver información personal y sus respuestas.</p>
 		</div>
