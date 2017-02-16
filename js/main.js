@@ -514,12 +514,12 @@ $(document).ready(function () {
 				var cuerpoTabla = $('#cuerpoTabla');
 				for (var i = 0; i < numeroFilas; i++) {
 				    cuerpoTabla.append('<tr><td>'+datos[i].dniAlumno+'</td><td>'+datos[i].nombres+'</td><td>'+datos[i].apellidos+'</td><td><button class=boton-ver onclick= prueba('+datos[i].dniAlumno+')>Ver detalle</button></td></tr>');
-				}     
+				}      
 				$('#tabla-alumnos').DataTable( {
 			        "scrollY":        "200px",
 			        "scrollCollapse": true,
-			        "paging":         false
-			    } );  
+			        "paging":         false,
+			    } );
             }
         });
 	});

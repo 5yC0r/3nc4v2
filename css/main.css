@@ -101,6 +101,8 @@ li{
 }
 #contenedor-tabla {
     padding-bottom: 20px;
+    width: 80%;
+    margin: 0 auto;
 }
 #listado-alumnos #resultado{
 	display: none;
@@ -154,10 +156,6 @@ li{
 }
 
 /*css para table*/
-table {
-    border-collapse: collapse;
-    width: 80% ;
-}
 tbody td, thead th {
     padding: 8px;
     text-align: center;
@@ -173,4 +171,9 @@ tr:hover{background-color:#f5f5f5}
     -webkit-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
     -moz-box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
     box-shadow: 1px 1px 1px 0px rgba(0,0,0,0.5);
+}
+
+/*css dataTable*/
+.dataTables_info{
+    display: none !important;
 }
