@@ -547,7 +547,9 @@ $(document).ready(function () {
 					$('#selectSecundario').removeAttr('disabled');
 				}else{
 					if(opcionSeleccionada == 4){
-
+						$('#selectSecundario').empty();
+						$('#selectSecundario').append(regionProcedencia);
+						$('#selectSecundario').removeAttr('disabled');
 					}else{
 						if(opcionSeleccionada == 5){
 							$('#selectSecundario').empty();
@@ -616,6 +618,9 @@ $(document).ready(function () {
 	    		break;
 	    	case "3":
 	    		var parametros = {"indice": 10,"regionProcedencia": valSelectSecundario};
+	    		break;
+	    	case "4":
+	    		var parametros = {"indice": 11,"regionResidencia": valSelectSecundario};
 	    		break;
 	    	case "5":
 	    		var parametros = {"indice": 7,"sexo": valSelectSecundario};

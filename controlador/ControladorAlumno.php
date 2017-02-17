@@ -42,6 +42,10 @@
             $resultado = $this->alumno->listarPorRegionProcedencia($regionProcedencia);
             return $resultado;
         }
+        public function listarPorRegionResidencia($regionResidencia){
+            $resultado = $this->alumno->listarPorRegionResidencia($regionResidencia);
+            return $resultado;
+        }
         public function listarPorSexo($sexo){
             $resultado = $this->alumno->listarPorSexo($sexo);
             return $resultado;

@@ -144,6 +144,21 @@
 													$i++;
 												}
 												echo json_encode($filas);
+											}else{
+												if($indice == 11){
+													session_start();
+													include 'ControladorAlumno.php';
+													$controladorAlumno = new ControladorAlumno();
+													$regionResidencia = $_POST["regionResidencia"];
+													$resultado = $controladorAlumno->listarPorRegionResidencia($regionResidencia);
+													$filas = array();
+													$i=0;
+													while($r = mysqli_fetch_assoc($resultado)){
+														$filas[$i] = $r;
+														$i++;
+													}
+													echo json_encode($filas);
+												}
 											}
 										}
 									}
