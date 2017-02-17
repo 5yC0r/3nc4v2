@@ -33,11 +33,6 @@
         	$this->con->consultaSimple($sql);
         	return true;
         }
-        public function listar(){
-        	$sql = "SELECT * FROM alumno";
-        	$resultado = $this->con->consultaRetorno($sql);
-        	return $resultado;
-        }
         public function ver(){
 			$sql = "SELECT * FROM alumno WHERE dniAlumno = '{$this->dniAlumno}'";
 			$resultado = $this->con->consultaRetorno($sql);
@@ -54,8 +49,37 @@
 			$this->anioEgreso = $row['anioEgreso'];
 			$this->telefono = $row['telefono'];
 			$this->correoElectronico = $row['correoElectronico'];
-
 			return $row;
 		}
+        public function listar(){
+        	$sql = "SELECT * FROM alumno";
+        	$resultado = $this->con->consultaRetorno($sql);
+        	return $resultado;
+        }
+        public function listarPorEstadoCivil($estadoCivil){
+            $sql = "SELECT * FROM alumno  WHERE estadoCivil ='".$estadoCivil."'";
+            $resultado = $this->con->consultaRetorno($sql);
+            return $resultado;
+        }
+        public function listarPorRegionProcedencia($regionProcedencia){
+            $sql = "SELECT * FROM alumno  WHERE regionProcedencia ='".$regionProcedencia."'";
+            $resultado = $this->con->consultaRetorno($sql);
+            return $resultado;
+        }
+        public function listarPorSexo($sexo){
+            $sql = "SELECT * FROM alumno  WHERE sexo ='".$sexo."'";
+            $resultado = $this->con->consultaRetorno($sql);
+            return $resultado;
+        }
+        public function listarPorRegionResidencia($regionResidencia){
+            $sql = "SELECT * FROM alumno  WHERE regionResidencia ='".$regionResidencia."'";
+            $resultado = $this->con->consultaRetorno($sql);
+            return $resultado;
+        }
+        public function listarPorAnioEgreso($anioEgreso){
+            $sql = "SELECT * FROM alumno  WHERE anioEgreso ='".$anioEgreso."'";
+            $resultado = $this->con->consultaRetorno($sql);
+            return $resultado;
+        }
 	}
  ?>

@@ -88,6 +88,21 @@
 								$controladorCuenta = new ControladorCuenta();
 								$dniAlumno = $_SESSION['dniAlumno'];
 								$resultado = $controladorCuenta->updateAttrEncuestaRespondida($dniAlumno);
+							}else{
+								if($indice == 7){
+									session_start();
+									include 'ControladorAlumno.php';
+									$controladorAlumno = new ControladorAlumno();
+									$sexo = $_POST["sexo"];
+									$resultado = $controladorAlumno->listarPorSexo($sexo);
+									$filas = array();
+									$i=0;
+									while($r = mysqli_fetch_assoc($resultado)){
+										$filas[$i] = $r;
+										$i++;
+									}
+									echo json_encode($filas);
+								}
 							}
 						}
 					}

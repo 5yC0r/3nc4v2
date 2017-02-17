@@ -30,7 +30,22 @@
             $resultado = $this->alumno->listar();
             return $resultado;
         }
-
+        public function listarPorAnioEgreso($anioEgreso){
+            $resultado = $this->alumno->listarPorAnioEgreso($anioEgreso);
+            return $resultado;
+        }
+        public function listarPorEstadoCivil($estadoCivil){
+            $resultado = $this->alumno->listarPorEstadoCivil($estadoCivil);
+            return $resultado;
+        }
+        public function listarPorRegionProcedencia($regionProcedencia){
+            $resultado = $this->alumno->listarPorRegionProcedencia($regionProcedencia);
+            return $resultado;
+        }
+        public function listarPorSexo($sexo){
+            $resultado = $this->alumno->listarPorSexo($sexo);
+            return $resultado;
+        }
         public function ver($dniAlumno){
 			$this->alumno->set("dniAlumno",$dniAlumno);
 			$datos = $this->alumno->ver();

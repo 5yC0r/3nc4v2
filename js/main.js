@@ -538,6 +538,109 @@ $(document).ready(function () {
 		$('#derecha').css("border-bottom","5px solid #e1b3b3");
 		$('#izquierda').css("border-bottom","5px solid #dd6061");
 	});
+
+	/* Eventos para la ventana consultas*/
+	$('#selectPrincipal').val(0);
+	$('#selectSecundario').empty();
+	$('#selectSecundario').append("<option value=''>Seleccione</option>");
+	var anioEgreso = 	"<option value=''>Seleccione</option>"+
+						"<option value='2017'>2017</option>"+
+						"<option value='2016'>2016</option>"+
+						"<option value='2015'>2015</option>"+
+						"<option value='2014'>2014</option>"+
+						"<option value='2013'>2013</option>"+
+						"<option value='2012'>2012</option>"+
+						"<option value='2011'>2011</option>"+
+						"<option value='2010'>2010</option>"+
+						"<option value='2009'>2009</option>"+
+						"<option value='2008'>2008</option>"+
+						"<option value='2007'>2007</option>"+
+						"<option value='2006'>2006</option>"+
+						"<option value='2005'>2005</option>"+
+						"<option value='2004'>2004</option>"+
+						"<option value='2003'>2003</option>"+
+						"<option value='2002'>2002</option>"+
+						"<option value='2001'>2001</option>"+
+						"<option value='2000'>2000</option>"+
+						"<option value='1999'>1999</option>";
+	var estadoCivil = "<option value=''>Seleccione</option><option value='soltero'>Soltero(a)</option><option value='casado'>Casado(a)</option>";
+	var regionProcedencia = "<option value=''>Seleccione</option><option value='costa'>Costa</option><option value='selva'>Selva</option><option value='sierra'>Sierra</option>";
+	var opcionSexo = "<option value=''>Seleccione</option><option value='masculino'>Masculino</option><option value='femenino'>Femenino</option>";
+	$('#selectPrincipal').change(function(){
+		var opcionSeleccionada = $('#selectPrincipal').val();
+		if(opcionSeleccionada == 1){
+			$('#selectSecundario').empty();
+			$('#selectSecundario').append(anioEgreso);
+		}else{
+			if(opcionSeleccionada == 2){
+				$('#selectSecundario').empty();
+				$('#selectSecundario').append(estadoCivil);
+			}else{
+				if(opcionSeleccionada == 3){
+					$('#selectSecundario').empty();
+					$('#selectSecundario').append(regionProcedencia);
+				}else{
+					if(opcionSeleccionada == 4){
+
+					}else{
+						if(opcionSeleccionada == 5){
+							$('#selectSecundario').empty();
+							$('#selectSecundario').append(opcionSexo);
+						}else{
+							$('#selectSecundario').empty();
+							$('#selectSecundario').append("<option value=''>Seleccione</option>");
+						}
+					}
+				}
+			}
+		}
+	});
+	$('#selectSecundario').change(function(){
+		var contenedorTabla = $('#contedor-tabla-consultas');
+	    var valSelectSecundario = $('#selectSecundario').val();
+	    switch(valSelectSecundario){
+	    	case "masculino":
+	    		var parametros = {"indice": 7,"sexo":"masculino"};
+	    		break;
+
+	    	case "femenino":
+	    		var parametros = {"indice": 7,"sexo":"femenino"};
+	    		break;
+	    }
+	    console.log(parametros);
+	    $.ajax({
+            data: parametros,
+            url : '../controlador/Controlador.php',
+            type : 'post',
+            success:  function (response) {
+				var datos = $.parseJSON(response); 
+				console.log(datos);
+				contenedorTabla.html("<table align='center' id='tabla-consulta-alumnos' class='display'>"+
+				"<thead>"+
+					"<tr>"+
+				        "<th>Codigo Usuario</th>"+
+						"<th>Nombre(s) Usuario</th>"+
+						"<th>Apellidos Usuario</th>"+
+						"<th>Seleccione</th>"+
+					"</tr>"+
+				"</thead>"+
+				"</tfoot>"+
+				"<tbody id='cuerpoTablaConsultas'></tbody>"+
+				"</table>");
+				var numeroFilas = datos.length;
+				var cuerpoTabla = $('#cuerpoTablaConsultas');
+				for (var i = 0; i < numeroFilas; i++) {
+				    cuerpoTabla.append('<tr><td>'+datos[i].dniAlumno+'</td><td>'+datos[i].nombres+'</td><td>'+datos[i].apellidos+'</td><td><button class=boton-ver onclick= prueba('+datos[i].dniAlumno+')>Ver detalle</button></td></tr>');
+				}     
+				$('#tabla-consulta-alumnos').DataTable( {
+			        "scrollY":        "200px",
+			        "scrollCollapse": true,
+			        "paging":         false,
+			    } ); 
+            }
+        });
+
+	});
 });
 
 function verificarPreguntasRespondidas(){
