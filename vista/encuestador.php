@@ -3,8 +3,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Ventana Administrador</title>
-
-	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="../css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/jquery.dataTables.css">
 	<link rel="stylesheet" href="../css/main.css">
@@ -23,8 +21,21 @@
 		<div id="instrucciones">
 			<p>Esta es la lista de las personas que han respondido la encuesta. Darle click al botón "Ver detalle" en la misma fila del nombre de la persona para ver información personal y sus respuestas.</p>
 		</div>
-		<div id="boton-listado-alumnos">
+		<!--<div id="boton-listado-alumnos">
 			<button id="botonListar">Ver listado</button>
+		</div>-->
+		<div id="opciones">
+			<label for="">Ver resultados por: </label>
+			<select name="" id="selectPrincipal">
+				<option value="0">Seleccione</option>
+				<option value="1">Año Egreso</option>
+				<option value="2">Estado Civil</option>
+				<option value="3">Región Procedencia</option>
+				<option value="4">Región Residencia</option>
+				<option value="5">Sexo</option>
+				<option value="6">Todo</option>
+			</select>
+			<select name="" id="selectSecundario"></select>
 		</div>
 		<div id="contenedor-tabla"></div>
 		<div class="" id="resultado">			

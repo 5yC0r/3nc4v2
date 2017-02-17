@@ -79,6 +79,11 @@ li{
 	margin: 0 auto;
     clear: both;
 }
+#opciones{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
 #cerrar-sesion{
     padding: 10px;
     color: black;
@@ -179,7 +184,7 @@ tr:hover{background-color:#f5f5f5}
 }
 
 /*css ventana consultas*/
-#contendor-consultas{
+/*#contendor-consultas{
     width: 998px;
     font-size: 18px;
     background-color: white;
@@ -191,13 +196,9 @@ tr:hover{background-color:#f5f5f5}
     width: 80%;
     margin: 0 auto;
 }
-#opciones{
-    width: 100%;
-    text-align: center;
-}
 #tablaSegunConsulta{
     width: 80%;
     height: 150px;
     margin: 5px auto;
     background-color: green;
-}
+}*/

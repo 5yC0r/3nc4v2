@@ -487,43 +487,6 @@ $(document).ready(function () {
 		}
 	});
 
-	$("#botonListar").click(function(){
-		var parametros = {"indice": 4};
-        $.ajax({
-            data: parametros,
-            url : '../controlador/Controlador.php',
-            type : 'post',
-            success:  function (response) {
-				var datos = $.parseJSON(response); 
-				console.log(datos);
-				var numeroFilas = datos.length;
-				var contenedorTabla = $('#contenedor-tabla');
-				contenedorTabla.html("<table align='center' id='tabla-alumnos' class='display'>"+
-				"<thead>"+
-					"<tr>"+
-				        "<th>Codigo Usuario</th>"+
-						"<th>Nombre(s) Usuario</th>"+
-						"<th>Apellidos Usuario</th>"+
-						"<th>Seleccione</th>"+
-					"</tr>"+
-				"</thead>"+
-				"</tfoot>"+
-				"<tbody id='cuerpoTabla'></tbody>"+
-				"</table>");
-
-				var cuerpoTabla = $('#cuerpoTabla');
-				for (var i = 0; i < numeroFilas; i++) {
-				    cuerpoTabla.append('<tr><td>'+datos[i].dniAlumno+'</td><td>'+datos[i].nombres+'</td><td>'+datos[i].apellidos+'</td><td><button class=boton-ver onclick= prueba('+datos[i].dniAlumno+')>Ver detalle</button></td></tr>');
-				}      
-				$('#tabla-alumnos').DataTable( {
-			        "scrollY":        "200px",
-			        "scrollCollapse": true,
-			        "paging":         false,
-			    } );
-            }
-        });
-	});
-
 	$('#derecha').click(function(){
 		$('#datos-personales').hide();
 		$('#preguntas').show();
@@ -571,14 +534,17 @@ $(document).ready(function () {
 		if(opcionSeleccionada == 1){
 			$('#selectSecundario').empty();
 			$('#selectSecundario').append(anioEgreso);
+			$('#selectSecundario').removeAttr('disabled');
 		}else{
 			if(opcionSeleccionada == 2){
 				$('#selectSecundario').empty();
 				$('#selectSecundario').append(estadoCivil);
+				$('#selectSecundario').removeAttr('disabled');
 			}else{
 				if(opcionSeleccionada == 3){
 					$('#selectSecundario').empty();
 					$('#selectSecundario').append(regionProcedencia);
+					$('#selectSecundario').removeAttr('disabled');
 				}else{
 					if(opcionSeleccionada == 4){
 
@@ -586,15 +552,56 @@ $(document).ready(function () {
 						if(opcionSeleccionada == 5){
 							$('#selectSecundario').empty();
 							$('#selectSecundario').append(opcionSexo);
+							$('#selectSecundario').removeAttr('disabled');
 						}else{
 							$('#selectSecundario').empty();
 							$('#selectSecundario').append("<option value=''>Seleccione</option>");
+							$('#selectSecundario').attr('disabled', 'disabled');
 						}
 					}
 				}
 			}
 		}
 	});
+	$('#selectPrincipal').change(function(){
+		if ($(this).val()==6) {
+			var parametros = {"indice": 4};
+			$.ajax({
+	            data: parametros,
+	            url : '../controlador/Controlador.php',
+	            type : 'post',
+	            success:  function (response) {
+					var datos = $.parseJSON(response); 
+					console.log(datos);
+					var numeroFilas = datos.length;
+					var contenedorTabla = $('#contenedor-tabla');
+					contenedorTabla.html("<table align='center' id='tabla-alumnos' class='display'>"+
+					"<thead>"+
+						"<tr>"+
+					        "<th>Codigo Usuario</th>"+
+							"<th>Nombre(s) Usuario</th>"+
+							"<th>Apellidos Usuario</th>"+
+							"<th>Seleccione</th>"+
+						"</tr>"+
+					"</thead>"+
+					"</tfoot>"+
+					"<tbody id='cuerpoTabla'></tbody>"+
+					"</table>");
+
+					var cuerpoTabla = $('#cuerpoTabla');
+					for (var i = 0; i < numeroFilas; i++) {
+					    cuerpoTabla.append('<tr><td>'+datos[i].dniAlumno+'</td><td>'+datos[i].nombres+'</td><td>'+datos[i].apellidos+'</td><td><button class=boton-ver onclick= prueba('+datos[i].dniAlumno+')>Ver detalle</button></td></tr>');
+					}      
+					$('#tabla-alumnos').DataTable( {
+				        "scrollY":        "200px",
+				        "scrollCollapse": true,
+				        "paging":         false,
+				    } ); 
+	            }
+	        });
+		}
+	});
+
 	$('#selectSecundario').change(function(){
 		var contenedorTabla = $('#contedor-tabla-consultas');
 		var valSelectPrincipal = $('#selectPrincipal').val();
@@ -622,7 +629,9 @@ $(document).ready(function () {
             success:  function (response) {
 				var datos = $.parseJSON(response); 
 				console.log(datos);
-				contenedorTabla.html("<table align='center' id='tabla-consulta-alumnos' class='display'>"+
+				var numeroFilas = datos.length;
+				var contenedorTabla = $('#contenedor-tabla');
+				contenedorTabla.html("<table align='center' id='tabla-alumnos' class='display'>"+
 				"<thead>"+
 					"<tr>"+
 				        "<th>Codigo Usuario</th>"+
@@ -632,21 +641,20 @@ $(document).ready(function () {
 					"</tr>"+
 				"</thead>"+
 				"</tfoot>"+
-				"<tbody id='cuerpoTablaConsultas'></tbody>"+
+				"<tbody id='cuerpoTabla'></tbody>"+
 				"</table>");
-				var numeroFilas = datos.length;
-				var cuerpoTabla = $('#cuerpoTablaConsultas');
+
+				var cuerpoTabla = $('#cuerpoTabla');
 				for (var i = 0; i < numeroFilas; i++) {
 				    cuerpoTabla.append('<tr><td>'+datos[i].dniAlumno+'</td><td>'+datos[i].nombres+'</td><td>'+datos[i].apellidos+'</td><td><button class=boton-ver onclick= prueba('+datos[i].dniAlumno+')>Ver detalle</button></td></tr>');
-				}     
-				$('#tabla-consulta-alumnos').DataTable( {
+				}      
+				$('#tabla-alumnos').DataTable( {
 			        "scrollY":        "200px",
 			        "scrollCollapse": true,
 			        "paging":         false,
 			    } ); 
             }
         });
-
 	});
 });
 

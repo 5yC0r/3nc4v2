@@ -149,3 +149,40 @@
                 }
         });
 	});
+
+$("#botonListar").click(function(){
+		var parametros = {"indice": 4};
+        $.ajax({
+            data: parametros,
+            url : '../controlador/Controlador.php',
+            type : 'post',
+            success:  function (response) {
+				var datos = $.parseJSON(response); 
+				console.log(datos);
+				var numeroFilas = datos.length;
+				var contenedorTabla = $('#contenedor-tabla');
+				contenedorTabla.html("<table align='center' id='tabla-alumnos' class='display'>"+
+				"<thead>"+
+					"<tr>"+
+				        "<th>Codigo Usuario</th>"+
+						"<th>Nombre(s) Usuario</th>"+
+						"<th>Apellidos Usuario</th>"+
+						"<th>Seleccione</th>"+
+					"</tr>"+
+				"</thead>"+
+				"</tfoot>"+
+				"<tbody id='cuerpoTabla'></tbody>"+
+				"</table>");
+
+				var cuerpoTabla = $('#cuerpoTabla');
+				for (var i = 0; i < numeroFilas; i++) {
+				    cuerpoTabla.append('<tr><td>'+datos[i].dniAlumno+'</td><td>'+datos[i].nombres+'</td><td>'+datos[i].apellidos+'</td><td><button class=boton-ver onclick= prueba('+datos[i].dniAlumno+')>Ver detalle</button></td></tr>');
+				}      
+				$('#tabla-alumnos').DataTable( {
+			        "scrollY":        "200px",
+			        "scrollCollapse": true,
+			        "paging":         false,
+			    } );
+            }
+        });
+	});
