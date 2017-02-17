@@ -102,6 +102,51 @@
 										$i++;
 									}
 									echo json_encode($filas);
+								}else{
+									if($indice ==8){
+										session_start();
+										include 'ControladorAlumno.php';
+										$controladorAlumno = new ControladorAlumno();
+										$estadoCivil = $_POST["estadoCivil"];
+										$resultado = $controladorAlumno->listarPorEstadoCivil($estadoCivil);
+										$filas = array();
+										$i=0;
+										while($r = mysqli_fetch_assoc($resultado)){
+											$filas[$i] = $r;
+											$i++;
+										}
+										echo json_encode($filas);
+									}else{
+										if($indice == 9){
+											session_start();
+											include 'ControladorAlumno.php';
+											$controladorAlumno = new ControladorAlumno();
+											$anioEgreso = $_POST["anioEgreso"];
+											$resultado = $controladorAlumno->listarPorAnioEgreso($anioEgreso);
+											$filas = array();
+											$i=0;
+											while($r = mysqli_fetch_assoc($resultado)){
+												$filas[$i] = $r;
+												$i++;
+											}
+											echo json_encode($filas);
+										}else{
+											if($indice == 10){
+												session_start();
+												include 'ControladorAlumno.php';
+												$controladorAlumno = new ControladorAlumno();
+												$regionProcedencia = $_POST["regionProcedencia"];
+												$resultado = $controladorAlumno->listarPorRegionProcedencia($regionProcedencia);
+												$filas = array();
+												$i=0;
+												while($r = mysqli_fetch_assoc($resultado)){
+													$filas[$i] = $r;
+													$i++;
+												}
+												echo json_encode($filas);
+											}
+										}
+									}
 								}
 							}
 						}

@@ -597,14 +597,21 @@ $(document).ready(function () {
 	});
 	$('#selectSecundario').change(function(){
 		var contenedorTabla = $('#contedor-tabla-consultas');
+		var valSelectPrincipal = $('#selectPrincipal').val();
 	    var valSelectSecundario = $('#selectSecundario').val();
-	    switch(valSelectSecundario){
-	    	case "masculino":
-	    		var parametros = {"indice": 7,"sexo":"masculino"};
-	    		break;
 
-	    	case "femenino":
-	    		var parametros = {"indice": 7,"sexo":"femenino"};
+	    switch(valSelectPrincipal){
+	    	case "1":
+	    		var parametros = {"indice": 9,"anioEgreso": valSelectSecundario};
+	    		break;
+	    	case "2":
+	    		var parametros = {"indice": 8,"estadoCivil": valSelectSecundario};
+	    		break;
+	    	case "3":
+	    		var parametros = {"indice": 10,"regionProcedencia": valSelectSecundario};
+	    		break;
+	    	case "5":
+	    		var parametros = {"indice": 7,"sexo": valSelectSecundario};
 	    		break;
 	    }
 	    console.log(parametros);
