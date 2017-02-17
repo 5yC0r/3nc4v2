@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-02-2017 a las 21:53:58
+-- Tiempo de generación: 17-02-2017 a las 03:57:18
 -- Versión del servidor: 10.0.17-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -64,9 +64,11 @@ CREATE TABLE `alumno` (
 --
 
 INSERT INTO `alumno` (`dniAlumno`, `nombres`, `apellidos`, `fechaNacimiento`, `estadoCivil`, `regionProcedencia`, `sexo`, `direccion`, `anioEgreso`, `telefono`, `correoElectronico`) VALUES
-(12345678, 'panfilo', 'alberto', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(72540879, 'jesus', 'vela', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(78945612, 'guille', 'fintanilla', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(12345678, 'panfilo', 'alberto', NULL, 'soltero', 'costa', 'masculino', NULL, 1998, NULL, NULL),
+(22222222, 'juana', 'castro', NULL, 'casado', 'costa', 'femenino', NULL, 1999, NULL, NULL),
+(54789942, 'ana', 'fernandez', NULL, 'soltero', 'sierra', 'femenino', NULL, 2000, NULL, NULL),
+(72540879, 'jesus', 'vela', NULL, 'casado', 'selva', 'masculino', NULL, 1998, NULL, NULL),
+(78945612, 'guille', 'fintanilla', NULL, 'casado', 'selva', 'masculino', NULL, 2000, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -107,13 +109,29 @@ CREATE TABLE `pregunta` (
 --
 
 INSERT INTO `pregunta` (`codPregunta`, `numeroPregunta`, `respuestaPregunta`, `dniAlumno`) VALUES
-(48, '1', 'c', 78945612),
-(49, '5', 'b', 78945612),
-(50, '3', 'g', 78945612),
-(51, '4', 'c', 78945612),
-(52, '2', 'c', 78945612),
-(53, '6', 'a', 78945612),
-(54, '7', 'b', 78945612);
+(55, '1', 'c', 72540879),
+(56, '6', 'b', 72540879),
+(57, '4', 'b', 72540879),
+(58, '2', 'e', 72540879),
+(59, '3', 'f', 72540879),
+(60, '5', 'b', 72540879),
+(61, '7', 'a', 72540879),
+(62, '7-1', 'a', 72540879),
+(63, '8', 'a', 72540879),
+(64, '8-1', 'b', 72540879),
+(65, '9', 'a', 72540879),
+(66, '10', 'b', 72540879),
+(67, '10-2', 'a', 72540879),
+(68, '11', 'b', 72540879),
+(69, '12', 'a', 72540879),
+(70, '13', 'b', 72540879),
+(71, '14', 'b', 72540879),
+(72, '15', 'b', 72540879),
+(73, '17', 'a', 72540879),
+(74, '20', 'b', 72540879),
+(75, '21', 'a', 72540879),
+(76, '22', 'a', 72540879),
+(77, '7-1-1', '3', 72540879);
 
 -- --------------------------------------------------------
 
@@ -133,7 +151,8 @@ CREATE TABLE `preguntart` (
 --
 
 INSERT INTO `preguntart` (`codPregunta`, `numeroPregunta`, `respuestaPregunta`, `dniAlumno`) VALUES
-(3, '7-2', 'olasdasd', 78945612);
+(4, '18', '200', 72540879),
+(5, '19', '22', 72540879);
 
 --
 -- Índices para tablas volcadas
@@ -178,12 +197,12 @@ ALTER TABLE `cuenta`
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  MODIFY `codPregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `codPregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 --
 -- AUTO_INCREMENT de la tabla `preguntart`
 --
 ALTER TABLE `preguntart`
-  MODIFY `codPregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `codPregunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- Restricciones para tablas volcadas
 --
