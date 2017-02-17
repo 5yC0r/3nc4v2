@@ -83,6 +83,7 @@
 							echo json_encode($resultado);
 						}else{
 							if($indice == 6){
+								//actualizar atributo encuestaRespondida
 								session_start();
 								include 'ControladorCuenta.php';
 								$controladorCuenta = new ControladorCuenta();
@@ -90,6 +91,7 @@
 								$resultado = $controladorCuenta->updateAttrEncuestaRespondida($dniAlumno);
 							}else{
 								if($indice == 7){
+									//listar alumnos por atributo sexo
 									session_start();
 									include 'ControladorAlumno.php';
 									$controladorAlumno = new ControladorAlumno();
@@ -104,6 +106,7 @@
 									echo json_encode($filas);
 								}else{
 									if($indice ==8){
+										//listar alumnos por atributo estado civil
 										session_start();
 										include 'ControladorAlumno.php';
 										$controladorAlumno = new ControladorAlumno();
@@ -118,6 +121,7 @@
 										echo json_encode($filas);
 									}else{
 										if($indice == 9){
+											//listar alumnos por año de egreso
 											session_start();
 											include 'ControladorAlumno.php';
 											$controladorAlumno = new ControladorAlumno();
@@ -132,6 +136,7 @@
 											echo json_encode($filas);
 										}else{
 											if($indice == 10){
+												//listar alumnos por region de procedencia
 												session_start();
 												include 'ControladorAlumno.php';
 												$controladorAlumno = new ControladorAlumno();
@@ -146,6 +151,7 @@
 												echo json_encode($filas);
 											}else{
 												if($indice == 11){
+													//listar alumnos por region de residencia
 													session_start();
 													include 'ControladorAlumno.php';
 													$controladorAlumno = new ControladorAlumno();

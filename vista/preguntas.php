@@ -178,11 +178,11 @@
 		</div>
 			<div class="pregunta-adicional-alternativa-multiple" id="8-1" data-head="a">
 				<div class="enunciado">
-					<label for="">Usted se ha capacidado profesionalmente en: (puede marcar más de una opción)</label>
+					<label for="">Usted se ha capacitado profesionalmente en: (puede marcar más de una opción)</label>
 				</div>
 				<div class="grupo-alternativas-pregunta-multiple">
 					<ul>
-						<li data-pregunta="8-1" data-indice="a">a) Cursos de larga duración y/o diplado.</li>
+						<li data-pregunta="8-1" data-indice="a">a) Cursos de larga duración y/o diplomado.</li>
 						<li data-pregunta="8-1" data-indice="b">b) Maestría.</li>
 						<li data-pregunta="8-1" data-indice="c">c) Doctorado.</li>
 						<li data-pregunta="8-1" data-indice="d">d) Especialidad.</li>

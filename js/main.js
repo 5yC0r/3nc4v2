@@ -415,9 +415,36 @@ $(document).ready(function () {
 		if(bandera == "falso"){
 			alert("Aun hay preguntas sin responder. (Marcadas de rojo)");
 		}else{
-			$('li[seleccionado=verdadero]').each(function(){
-				var numeroPregunta = $(this).data("pregunta");
-				var respuesta = $(this).data("indice");
+			$('#myModal').modal('show');
+		}
+	});
+	$('#cerrar-session').click(function(){
+		('li[seleccionado=verdadero]').each(function(){
+			var numeroPregunta = $(this).data("pregunta");
+			var respuesta = $(this).data("indice");
+			//console.log(numeroPregunta + " > " + respuesta);
+			var parametros ={
+				"indice": 0,
+				"pregunta" : numeroPregunta,
+				"respuesta" : respuesta
+			}
+			$.ajax({
+	                data:  parametros,
+	                url:   'controlador/Controlador.php',
+	                type:  'post',
+	                beforeSend: function () {
+	                        $("#resultado").html("Procesando, espere por favor...");
+	                },
+	                success:  function () {
+	                        $("#resultado").html("Sus respuestas han sido ingresadas y registradas, gracias por participar de nuestra encuesta.");
+	                }
+	        });
+		});
+		//para guardar preguntas tipo select
+		$('select').each(function(){
+			var numeroPregunta = $(this).data("pregunta");
+			var respuesta = $(this).val();
+			if(respuesta != 0){
 				//console.log(numeroPregunta + " > " + respuesta);
 				var parametros ={
 					"indice": 0,
@@ -435,56 +462,42 @@ $(document).ready(function () {
 		                        $("#resultado").html("Sus respuestas han sido ingresadas y registradas, gracias por participar de nuestra encuesta.");
 		                }
 		        });
-			});
-			//para guardar preguntas tipo select
-			$('select').each(function(){
-				var numeroPregunta = $(this).data("pregunta");
-				var respuesta = $(this).val();
-				if(respuesta != 0){
-					//console.log(numeroPregunta + " > " + respuesta);
-					var parametros ={
-						"indice": 0,
-						"pregunta" : numeroPregunta,
-						"respuesta" : respuesta
-					}
-					$.ajax({
-			                data:  parametros,
-			                url:   'controlador/Controlador.php',
-			                type:  'post',
-			                beforeSend: function () {
-			                        $("#resultado").html("Procesando, espere por favor...");
-			                },
-			                success:  function () {
-			                        $("#resultado").html("Sus respuestas han sido ingresadas y registradas, gracias por participar de nuestra encuesta.");
-			                }
-			        });
+			}
+		});
+		//para guardar preguntas tipo input
+		$('input').each(function(){
+			var numeroPregunta = $(this).data("pregunta");
+			var respuesta = $(this).val();
+			if(respuesta != ""){
+				//console.log(numeroPregunta + " -> " + respuesta);
+				var parametros ={
+					"indice": 1,
+					"pregunta" : numeroPregunta,
+					"respuesta" : respuesta
 				}
-			});
-			//para guardar preguntas tipo input
-			$('input').each(function(){
-				var numeroPregunta = $(this).data("pregunta");
-				var respuesta = $(this).val();
-				if(respuesta != ""){
-					//console.log(numeroPregunta + " -> " + respuesta);
-					var parametros ={
-						"indice": 1,
-						"pregunta" : numeroPregunta,
-						"respuesta" : respuesta
-					}
-					$.ajax({
-			                data:  parametros,
-			                url:   'controlador/Controlador.php',
-			                type:  'post',
-			                beforeSend: function () {
-			                        $("#resultado").html("Procesando, espere por favor...");
-			                },
-			                success:  function () {
-			                        $("#resultado").html("Sus respuestas han sido ingresadas y registradas, gracias por participar de nuestra encuesta.");
-			                }
-			        });
-				}
-			});
-		}
+				$.ajax({
+		                data:  parametros,
+		                url:   'controlador/Controlador.php',
+		                type:  'post',
+		                beforeSend: function () {
+		                        $("#resultado").html("Procesando, espere por favor...");
+		                },
+		                success:  function () {
+		                        $("#resultado").html("Sus respuestas han sido ingresadas y registradas, gracias por participar de nuestra encuesta.");
+		                }
+		        });
+			}
+		});
+		//actualizar atributo encuesta respondida
+		var parametros = {"indice" : 6};
+		$.ajax({
+	            data:  parametros,
+	            url:   'controlador/Controlador.php',
+	            type:  'post',
+	            success:  function (response) {
+	            }
+	    });
+	    alert("Gracias por responder nuestra encuesta. Buen día. :)");
 	});
 
 	$('#derecha').click(function(){
@@ -494,7 +507,6 @@ $(document).ready(function () {
 		$('#derecha').css("border-bottom","5px solid #dd6061");
 		
 	});
-
 	$('#izquierda').click(function(){
 		$('#preguntas').hide();
 		$('#datos-personales').show();
@@ -566,6 +578,7 @@ $(document).ready(function () {
 		}
 	});
 	$('#selectPrincipal').change(function(){
+		$('#resultado').hide();
 		if ($(this).val()==6) {
 			var parametros = {"indice": 4};
 			$.ajax({
@@ -605,6 +618,7 @@ $(document).ready(function () {
 	});
 
 	$('#selectSecundario').change(function(){
+		$('#resultado').hide();
 		var contenedorTabla = $('#contedor-tabla-consultas');
 		var valSelectPrincipal = $('#selectPrincipal').val();
 	    var valSelectSecundario = $('#selectSecundario').val();

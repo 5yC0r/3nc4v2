@@ -65,7 +65,25 @@ li{
 .pregunta-adicional-alternativa-multiple, .pregunta-adicional-tipeada{
 	display: none;
 }
-
+#boton-guardar-respuestas{
+    float: right;
+    text-align: center;
+    margin-top: 20px;
+    margin-right: 50px;
+    margin-bottom: 30px;
+    float: right;
+    height: 50px;
+    width: 200px;
+    /*background-color: green;*/
+    color: white;
+    font-size: 18px;
+    border: 1px solid #337ab7;
+    border-radius: 10px;
+    cursor: pointer;
+    -webkit-box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.5);
+    box-shadow: 2px 2px 1px 0px rgba(0,0,0,0.5);
+}
 /*CSS para ventana encuestador*/
 #listado-alumnos{
 	background-color: white;

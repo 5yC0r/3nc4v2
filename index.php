@@ -1,17 +1,17 @@
 <?php
 	session_start();
-	$_SESSION['dniAlumno']=72540879;
+	$_SESSION['dniAlumno']=22222222;
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Encuesta Estomatología</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/main.css">
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	<script src="js/main.js"></script>
 </head>
 <body>
@@ -40,8 +40,7 @@
 					</div>
 					<div class="modal-body">
 						<div style="text-align: center; margin-bottom: 10px; font-weight: 700">¿Está seguro de sus respuestas?</div>
-						<div style="margin-bottom: 10px;text-align: justify;">Si acepta, esta ventana se cerrará y la encuesta terminará; si desea cambiar alguna(s) respuesta(s), presione el botón "Cancelar" y corriga su(s) respuesta(s). Luego presione nuevamente el botón "Guardar Respuestas" en la ventana anterior y finalmente "Aceptar" en esta.</div>
-						<div><label style="font-weight: 700" for="">Nota: </label> Asegúrese de haber respondido todas las preguntas antes de dar por finalizada la encuesta.</div>
+						<div style="margin-bottom: 10px;text-align: justify;">Si acepta, esta ventana se cerrará y la encuesta terminará; si desea cambiar alguna(s) de su(s) respuesta(s), presione el botón "Cancelar" y corriga su(s) respuesta(s). Luego presione nuevamente el botón "Guardar Respuestas" en la ventana anterior y finalmente "Aceptar" en esta.</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
