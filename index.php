@@ -6,6 +6,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Encuesta Estomatología</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/main.css">
@@ -17,16 +18,20 @@
 <body>
 	<div id="cuadrado"></div>
 	<div id="contenedor-global">
-		<h1>Bienvenido</h1>
-		<p>Instrucciones: A continuación se le presenta un conjunto de preguntas, algunas son de respuesta única, otras de respuesta múltiple y otras donde tendrá que digitar la respuesta usted mismo. Al finalizar todas las preguntas, solo de click al botón del final y sus respuestas serán registradas y almacenadas en nuestra base de datos.</p>
-		<?php
-			include ('vista/preguntas.php'); 
-		?>
-
-		<button type="button" class="btn btn-primary btn-lg" id="boton-guardar-respuestas">
-			Guardar Respuestas
-		</button>
-
+		<div id="contendor-titulo">
+			<h1>Bienvenido</h1>
+		</div>
+		<div id="contenedor-instrucciones">
+			<p>Instrucciones: A continuación se le presenta un conjunto de preguntas, algunas son de respuesta única, otras de respuesta múltiple y otras donde tendrá que digitar la respuesta usted mismo. Al finalizar todas las preguntas, solo de click al botón del final y sus respuestas serán registradas y almacenadas en nuestra base de datos.</p>
+		</div>
+		<div id="contenedor-preguntas">
+			<?php
+				include ('vista/preguntas.php'); 
+			?>
+			<button type="button" class="btn btn-primary btn-lg" id="boton-guardar-respuestas">
+				Guardar Respuestas
+			</button>
+		</div>
 		<div id="resultado">
 		</div>
 

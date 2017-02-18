@@ -13,7 +13,6 @@
 			</ul>		
 		</div>
 	</div>
-
 	<div class="pregunta-alternativa-simple" id="2">
 		<div class="enunciado">
 			<label for="">2. ¿Cuál fue su percepción sobre el desempeño de los docentes de la Facultad de Estomatología al egresar?</label>
@@ -28,7 +27,6 @@
 			</ul>
 		</div>
 	</div>
-
 	<div class="pregunta-alternativa-multiple" id="3">
 		<div class="enunciado">
 			<label for="">3. ¿Cuál es el área de interés para su capacitación profesional? (Puede marcar más de una opción)</label>

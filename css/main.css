@@ -9,7 +9,7 @@ li{
 	list-style: none;
 	cursor: pointer;
 }
-#cuadrado{
+/*#cuadrado{
 	width: 300px;
     height: 120px;
     background-color: #dd6061;
@@ -21,7 +21,7 @@ li{
 	-webkit-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
 	box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
-}
+}*/
 #contenedor-global > p{
 	margin-left: 100px;
     margin-right: 50px;
@@ -38,8 +38,17 @@ li{
     overflow: hidden
 }
 #contenedor-global .preguntas{
-	margin-left: 100px;
-    margin-right: 50px;
+	/*margin-left: 100px;
+    margin-right: 50px;*/
+}
+/*.preguntas{
+    width: 100%;
+    margin: 0 auto;
+}*/
+#contenedor-titulo, #contenedor-instrucciones, #contenedor-preguntas{
+    width: 85%;
+    margin: 0 auto;
+    overflow: hidden;
 }
 #preguntas-titulado{
 	display: none;
@@ -69,7 +78,6 @@ li{
     float: right;
     text-align: center;
     margin-top: 20px;
-    margin-right: 50px;
     margin-bottom: 30px;
     float: right;
     height: 50px;
@@ -220,3 +228,9 @@ tr:hover{background-color:#f5f5f5}
     margin: 5px auto;
     background-color: green;
 }*/
+
+@media only screen and (max-width: 768px){
+    #contenedor-global{
+        width: auto;
+    }
+}
