@@ -54,18 +54,27 @@
 						include ('preguntas.php'); 
 					?>
 				</div>
-				<div id="datos-personales">
-					<label for="">Dni Alumno: </label><label for="" id="dniAlumno"></label><br>
-					<label for="">Nombes Alumno: </label><label for="" id="nombres"></label><br>
-					<label for="">Apellidos Alumno: </label><label for="" id="apellidos"></label><br>
-					<label for="">Fecha Nacimiento: </label><label for="" id="fechaNacimiento"></label><br>
-					<label for="">Estado Civil: </label><label for="" id="estadoCivil"></label><br>
-					<label for="">Región de Procedencia: </label><label for="" id="regionProcedencia"></label><br>
-					<label for="">Sexo: </label><label for="" id="sexo"></label><br>
-					<label for="">Dirección: </label><label for="" id="direccion"></label><br>
-					<label for="">Año Egreso: </label><label for="" id="anioEgreso"></label><br>
-					<label for="">Teléfono: </label><label for="" id="telefono"></label><br>
-					<label for="">Correo Electrónico: </label><label for="" id="correoElectronico"></label><br>
+				<div id="datos-personales" style="width: 80%;">
+					<table class="table table-hover">
+						<thead>
+							<th>DATO</th>
+							<th>VALOR</th>
+						</thead>
+						<tbody>
+							<tr><td>DNI Alumno</td><td><label for="" id="dniAlumno"></label></td></tr>
+							<tr><td>Nombres Alumno</td><td><label for="" id="nombres"></label</td></tr>
+							<tr><td>Apellidos Alumno</td><td><label for="" id="apellidos"></label></td></tr>
+							<tr><td>Fecha Nacimiento</td><td><label for="" id="fechaNacimiento"></label></td></tr>
+							<tr><td>Estado Civil</td><td><label for="" id="estadoCivil"></label></td></tr>
+							<tr><td>Región de Procedencia</td><td><label for="" id="regionProcedencia"></label></td></tr>
+							<tr><td>Región de Residencia</td><td><label for="" id="regionResidencia"></label></td></tr>
+							<tr><td>Dirección</td><td><label for="" id="direccion"></label></td></tr>
+							<tr><td>Sexo</td><td><label for="" id="sexo"></label></td></tr>
+							<tr><td>Año Egreso</td><td><label for="" id="anioEgreso"></label></td></tr>
+							<tr><td>Teléfono</td><td><label for="" id="telefono"></label></td></tr>
+							<tr><td>Correo Electrónico</td><td><label for="" id="correoElectronico"></label></td></tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
