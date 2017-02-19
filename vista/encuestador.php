@@ -54,7 +54,7 @@
 						include ('preguntas.php'); 
 					?>
 				</div>
-				<div id="datos-personales" style="width: 80%;">
+				<div id="datos-personales">
 					<table class="table table-hover">
 						<thead>
 							<th>DATO</th>

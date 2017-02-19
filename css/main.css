@@ -229,8 +229,12 @@ tr:hover{background-color:#f5f5f5}
     background-color: green;
 }*/
 
-@media only screen and (max-width: 768px){
-    #contenedor-global{
+@media only screen and (max-width: 980px){
+    #contenedor-global,#listado-alumnos{
         width: auto;
+    }
+    #cuerpo{
+        margin: 0 auto;
+        padding: 10px 10px;
     }
 }
